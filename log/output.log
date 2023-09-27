@@ -1,0 +1,209 @@
+20:12:23.132 INFO  o.s.boot.StartupInfoLogger 51 logStarting - Starting Main using Java 20.0.1 with PID 9184 (F:\git\github\Database-course-design\database-design\target\classes started by 98362 in F:\git\github\Database-course-design\database-design)
+20:12:23.135 INFO  o.s.boot.SpringApplication 643 logStartupProfileInfo - The following 1 profile is active: "test"
+20:12:23.571 WARN  org.mybatis.logging.Logger 44 warn - No MyBatis mapper was found in '[com.purexua]' package. Please check your configuration.
+20:12:23.868 INFO  o.s.b.w.e.tomcat.TomcatWebServer 108 initialize - Tomcat initialized with port(s): 8080 (http)
+20:12:23.868 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Loaded Apache Tomcat Native library [2.0.5] using APR version [1.7.4].
+20:12:23.874 INFO  o.apache.juli.logging.DirectJDKLog 173 log - OpenSSL successfully initialized [OpenSSL 3.0.10 1 Aug 2023]
+20:12:23.879 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing ProtocolHandler ["http-nio-8080"]
+20:12:23.880 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting service [Tomcat]
+20:12:23.880 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting Servlet engine: [Apache Tomcat/10.1.13]
+20:12:23.939 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing Spring embedded WebApplicationContext
+20:12:23.939 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext 291 prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 759 ms
+20:12:24.194 INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure 55 dataSource - Init DruidDataSource
+20:12:24.499 INFO  c.alibaba.druid.pool.DruidDataSource 1010 init - {dataSource-1} inited
+20:12:24.614 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting ProtocolHandler ["http-nio-8080"]
+20:12:24.629 INFO  o.s.b.w.e.tomcat.TomcatWebServer 220 start - Tomcat started on port(s): 8080 (http) with context path ''
+20:12:24.636 INFO  o.s.boot.StartupInfoLogger 57 logStarted - Started Main in 1.819 seconds (process running for 2.438)
+20:20:07.692 INFO  c.alibaba.druid.pool.DruidDataSource 2170 close - {dataSource-1} closing ...
+20:20:07.696 INFO  c.alibaba.druid.pool.DruidDataSource 2243 close - {dataSource-1} closed
+20:20:11.943 INFO  o.s.boot.StartupInfoLogger 51 logStarting - Starting Main using Java 20.0.1 with PID 5592 (F:\git\github\Database-course-design\database-design\target\classes started by 98362 in F:\git\github\Database-course-design\database-design)
+20:20:11.945 INFO  o.s.boot.SpringApplication 643 logStartupProfileInfo - The following 1 profile is active: "druid"
+20:20:12.401 WARN  org.mybatis.logging.Logger 44 warn - No MyBatis mapper was found in '[com.purexua.dao]' package. Please check your configuration.
+20:20:12.709 INFO  o.s.b.w.e.tomcat.TomcatWebServer 108 initialize - Tomcat initialized with port(s): 8080 (http)
+20:20:12.710 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Loaded Apache Tomcat Native library [2.0.5] using APR version [1.7.4].
+20:20:12.716 INFO  o.apache.juli.logging.DirectJDKLog 173 log - OpenSSL successfully initialized [OpenSSL 3.0.10 1 Aug 2023]
+20:20:12.722 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing ProtocolHandler ["http-nio-8080"]
+20:20:12.723 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting service [Tomcat]
+20:20:12.723 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting Servlet engine: [Apache Tomcat/10.1.13]
+20:20:12.788 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing Spring embedded WebApplicationContext
+20:20:12.788 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext 291 prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 793 ms
+20:20:13.041 INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure 55 dataSource - Init DruidDataSource
+20:20:13.316 ERROR c.alibaba.druid.pool.DruidDataSource 943 init - init datasource error, url: jdbc:mysql://localhost:3306/database_course_designjava.sql.SQLSyntaxErrorException: Unknown database 'database_course_design'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1694)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1789)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:939)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1874)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1827)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:942)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
+	at com.purexua.Main.main(Main.java:12)
+
+20:20:13.319 ERROR c.alibaba.druid.pool.DruidDataSource 985 init - {dataSource-1} init errorjava.sql.SQLSyntaxErrorException: Unknown database 'database_course_design'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1694)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1789)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:939)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1874)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1827)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:942)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
+	at com.purexua.Main.main(Main.java:12)
+
+20:20:13.319 INFO  c.alibaba.druid.pool.DruidDataSource 1010 init - {dataSource-1} inited
+20:20:13.320 WARN  o.s.c.s.AbstractApplicationContext 616 refresh - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot3/autoconfigure/DruidDataSourceAutoConfigure.class]: Unknown database 'database_course_design'
+20:20:13.322 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Stopping service [Tomcat]
+20:20:13.331 ERROR c.a.d.p.DruidDataSource$CreateConnectionThread 2944 run - create connection SQLException, url: jdbc:mysql://localhost:3306/database_course_design, errorCode 1049, state 42000java.sql.SQLSyntaxErrorException: Unknown database 'database_course_design'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1694)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1789)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2942)
+
+20:20:13.340 INFO  o.s.b.a.l.ConditionEvaluationReportLogger 82 logMessage - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+20:20:13.341 ERROR c.a.d.p.DruidDataSource$CreateConnectionThread 2944 run - create connection SQLException, url: jdbc:mysql://localhost:3306/database_course_design, errorCode 1049, state 42000java.sql.SQLSyntaxErrorException: Unknown database 'database_course_design'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1694)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1789)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2942)
+
+20:20:13.341 INFO  c.a.d.pool.DruidAbstractDataSource 1882 setFailContinuous - {dataSource-1} failContinuous is true
+20:20:13.352 ERROR o.s.boot.SpringApplication 827 reportFailure - Application run failedorg.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot3/autoconfigure/DruidDataSourceAutoConfigure.class]: Unknown database 'database_course_design'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:942)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
+	at com.purexua.Main.main(Main.java:12)
+Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'database_course_design'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1694)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1789)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:939)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1874)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1827)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	... 16 common frames omitted
+
+20:20:46.125 INFO  o.s.boot.StartupInfoLogger 51 logStarting - Starting Main using Java 20.0.1 with PID 24928 (F:\git\github\Database-course-design\database-design\target\classes started by 98362 in F:\git\github\Database-course-design\database-design)
+20:20:46.127 INFO  o.s.boot.SpringApplication 643 logStartupProfileInfo - The following 1 profile is active: "druid"
+20:20:46.571 WARN  org.mybatis.logging.Logger 44 warn - No MyBatis mapper was found in '[com.purexua.dao]' package. Please check your configuration.
+20:20:46.871 INFO  o.s.b.w.e.tomcat.TomcatWebServer 108 initialize - Tomcat initialized with port(s): 8080 (http)
+20:20:46.871 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Loaded Apache Tomcat Native library [2.0.5] using APR version [1.7.4].
+20:20:46.876 INFO  o.apache.juli.logging.DirectJDKLog 173 log - OpenSSL successfully initialized [OpenSSL 3.0.10 1 Aug 2023]
+20:20:46.882 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing ProtocolHandler ["http-nio-8080"]
+20:20:46.884 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting service [Tomcat]
+20:20:46.884 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting Servlet engine: [Apache Tomcat/10.1.13]
+20:20:46.946 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing Spring embedded WebApplicationContext
+20:20:46.946 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext 291 prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 767 ms
+20:20:47.198 INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure 55 dataSource - Init DruidDataSource
+20:20:47.526 INFO  c.alibaba.druid.pool.DruidDataSource 1010 init - {dataSource-1} inited
+20:20:47.640 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting ProtocolHandler ["http-nio-8080"]
+20:20:47.655 INFO  o.s.b.w.e.tomcat.TomcatWebServer 220 start - Tomcat started on port(s): 8080 (http) with context path ''
+20:20:47.662 INFO  o.s.boot.StartupInfoLogger 57 logStarted - Started Main in 1.829 seconds (process running for 2.425)
+20:22:13.535 INFO  c.alibaba.druid.pool.DruidDataSource 2170 close - {dataSource-1} closing ...
+20:22:13.539 INFO  c.alibaba.druid.pool.DruidDataSource 2243 close - {dataSource-1} closed
+20:22:15.315 INFO  o.s.boot.StartupInfoLogger 51 logStarting - Starting Main using Java 20.0.1 with PID 34436 (F:\git\github\Database-course-design\database-design\target\classes started by 98362 in F:\git\github\Database-course-design\database-design)
+20:22:15.318 INFO  o.s.boot.SpringApplication 643 logStartupProfileInfo - The following 1 profile is active: "druid"
+20:22:15.760 WARN  org.mybatis.logging.Logger 44 warn - No MyBatis mapper was found in '[com.purexua.dao]' package. Please check your configuration.
+20:22:16.066 INFO  o.s.b.w.e.tomcat.TomcatWebServer 108 initialize - Tomcat initialized with port(s): 8080 (http)
+20:22:16.067 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Loaded Apache Tomcat Native library [2.0.5] using APR version [1.7.4].
+20:22:16.072 INFO  o.apache.juli.logging.DirectJDKLog 173 log - OpenSSL successfully initialized [OpenSSL 3.0.10 1 Aug 2023]
+20:22:16.077 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing ProtocolHandler ["http-nio-8080"]
+20:22:16.079 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting service [Tomcat]
+20:22:16.079 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting Servlet engine: [Apache Tomcat/10.1.13]
+20:22:16.144 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Initializing Spring embedded WebApplicationContext
+20:22:16.144 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext 291 prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 775 ms
+20:22:16.409 INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure 55 dataSource - Init DruidDataSource
+20:22:16.747 INFO  c.alibaba.druid.pool.DruidDataSource 1010 init - {dataSource-1} inited
+20:22:16.862 INFO  o.apache.juli.logging.DirectJDKLog 173 log - Starting ProtocolHandler ["http-nio-8080"]
+20:22:16.877 INFO  o.s.b.w.e.tomcat.TomcatWebServer 220 start - Tomcat started on port(s): 8080 (http) with context path ''
+20:22:16.884 INFO  o.s.boot.StartupInfoLogger 57 logStarted - Started Main in 1.852 seconds (process running for 2.442)
+20:26:41.219 INFO  c.alibaba.druid.pool.DruidDataSource 2170 close - {dataSource-1} closing ...
+20:26:41.223 INFO  c.alibaba.druid.pool.DruidDataSource 2243 close - {dataSource-1} closed
