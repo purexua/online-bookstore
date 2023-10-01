@@ -1,8 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
-<mapper namespace="">
-
+<mapper namespace="com.purexua.mapper.UserMapper">
+  <select id="queryAll" resultType="user">
+    select * from user
+  </select>
+  
+  <select id="queryById" resultType="user">
+    select * from user
+    where user_id = #{id}
+  </select>
+  
+  <insert id="insertUser" parameterType="user">
+    INSERT INTO User
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+    </trim>
+    <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId},
+      </if>
+      <if test="userName != null">
+        #{userName},
+      </if>
+      <if test="password != null">
+        #{password},
+      </if>
+      <if test="email != null">
+        #{email},
+      </if>
+      <if test="address != null">
+        #{address},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteUserById">
+    delete from user
+    where user_id = #{id}
+  </delete>
+  <update id="updateUser" >
+    update user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName},
+      </if>
+      <if test="password != null">
+        password = #{password},
+      </if>
+      <if test="email != null">
+        email = #{email},
+      </if>
+      <if test="address != null">
+        address = #{address},
+      </if>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber},
+      </if>
+    </set>
+    where user_id = #{userId}
+  </update>
 </mapper>
