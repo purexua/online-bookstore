@@ -15,10 +15,12 @@ CREATE TABLE user
 (
     user_id      INT AUTO_INCREMENT PRIMARY KEY,
     user_name    VARCHAR(255) NOT NULL,
-    password     VARCHAR(255) NOT NULL,
-    email        VARCHAR(255),
+    password     VARCHAR(255) NOT NULL,  -- Consider using a hashed password
+    email        VARCHAR(100),
     address      VARCHAR(255),
-    phone_number VARCHAR(15)
+    phone_number VARCHAR(20),
+    created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 ```
 
@@ -36,106 +38,244 @@ CREATE TABLE book (
 );
 ```
 
-### 3.订单信息表
+### 3.订单状态表
 
 ```mysql
-CREATE TABLE `Order` (
-                         order_id INT AUTO_INCREMENT PRIMARY KEY,
-                         user_id INT,
-                         order_date DATE,
-                         order_status ENUM('Pending', 'Processing') NOT NULL,
-                         FOREIGN KEY (user_id) REFERENCES User(user_id)
+CREATE TABLE order_status (
+                              status_id INT AUTO_INCREMENT PRIMARY KEY,
+                              status_name VARCHAR(255) NOT NULL
 );
 ```
 
-### 4.订单详情表
+### 4.订单表
 
 ```mysql
-CREATE TABLE OrderDetail (
-                             detail_id INT AUTO_INCREMENT PRIMARY KEY,
-                             order_id INT,
-                             book_id INT,
-                             quantity INT,
-                             total_price DECIMAL(10, 2),
-                             FOREIGN KEY (order_id) REFERENCES `Order`(order_id),
-                             FOREIGN KEY (book_id) REFERENCES Book(book_id)
+CREATE TABLE `order` (
+                          order_id INT AUTO_INCREMENT PRIMARY KEY,
+                          user_id INT NOT NULL,
+                          order_date DATE,
+                          status_id INT NOT NULL,
+                          FOREIGN KEY (user_id) REFERENCES user(user_id),
+                          FOREIGN KEY (status_id) REFERENCES order_status(status_id)
 );
 ```
 
-### 5.购物车表
+### 5.订单详情表
 
 ```mysql
-CREATE TABLE ShoppingCart (
+CREATE TABLE order_detail (
+                              detail_id INT AUTO_INCREMENT PRIMARY KEY,
+                              order_id INT NOT NULL,
+                              book_id INT NOT NULL,
+                              quantity INT NOT NULL,
+                              FOREIGN KEY (order_id) REFERENCES `order`(order_id),
+                              FOREIGN KEY (book_id) REFERENCES book(book_id)
+);
+```
+
+### 6.购物车表
+
+```mysql
+CREATE TABLE shopping_cart (
                               cart_id INT AUTO_INCREMENT PRIMARY KEY,
-                              user_id INT,
-                              FOREIGN KEY (user_id) REFERENCES User(user_id)
+                              user_id INT NOT NULL,
+                              FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 ```
 
-### 6.购物车明细表
+### 7.购物车明细表
 
 ```mysql
-CREATE TABLE ShoppingCartItem (
+CREATE TABLE shopping_cart_item (
                                   item_id INT AUTO_INCREMENT PRIMARY KEY,
-                                  cart_id INT,
-                                  book_id INT,
-                                  quantity INT,
-                                  FOREIGN KEY (cart_id) REFERENCES ShoppingCart(cart_id),
-                                  FOREIGN KEY (book_id) REFERENCES Book(book_id)
+                                  cart_id INT NOT NULL,
+                                  book_id INT NOT NULL,
+                                  quantity INT NOT NULL,
+                                  FOREIGN KEY (cart_id) REFERENCES shopping_cart(cart_id),
+                                  FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
 ```
 
 ## 数据模拟
 
 ```mysql
+-- Insert into User
 INSERT INTO user (user_name, password, email, address, phone_number)
-VALUES
-    ('JohnDoe', 'password123', 'john.doe@example.com', '123 Main St, City', '555-1234'),
-    ('AliceSmith', 'securepass', 'alice.smith@example.com', '456 Elm St, Town', '555-5678');
+VALUES ('Alice', 'password1', 'alice@example.com', '123 Main St', '123-456-7890'),
+       ('Bob', 'password2', 'bob@example.com', '456 Maple Ave', '234-567-8901');
 
+-- Insert into Book
 INSERT INTO book (title, author, publisher, isbn, price, stock)
-VALUES
-    ('The Great Gatsby', 'F. Scott Fitzgerald', 'Scribner', '9780743273565', 12.99, 50),
-    ('To Kill a Mockingbird', 'Harper Lee', 'Harper Perennial', '9780061120084', 10.50, 35),
-    ('1984', 'George Orwell', 'Penguin Books', '9780451524935', 9.99, 60),
-    ('Pride and Prejudice', 'Jane Austen', 'Penguin Classics', '9780141439518', 8.95, 40);
+VALUES ('Book1', 'Author1', 'Publisher1', '1234567890123', 19.99, 10),
+       ('Book2', 'Author2', 'Publisher2', '2345678901234', 29.99, 15);
 
-INSERT INTO `Order` (user_id, order_date, order_status)
-VALUES
-    (1, '2023-09-01', 'Pending'),
-    (2, '2023-09-02', 'Processing'),
-    (1, '2023-09-03', 'Pending'),
-    (2, '2023-09-04', 'Processing');
+-- Insert into OrderStatus
+INSERT INTO order_status (status_name)
+VALUES ('Processing'), ('Shipped'), ('Delivered');
 
-INSERT INTO OrderDetail (order_id, book_id, quantity, total_price)
-VALUES
-    (1, 1, 2, 25.98),
-    (1, 3, 1, 9.99),
-    (2, 2, 3, 31.50),
-    (3, 4, 2, 17.90),
-    (4, 1, 1, 12.99),
-    (4, 2, 2, 21.00);
+-- Insert into Order
+INSERT INTO `order` (user_id, order_date, status_id)
+VALUES (1, CURDATE(), 1), (2, CURDATE(), 2);
 
--- 假设用户1的购物车包含两本图书
-INSERT INTO ShoppingCart (user_id)
-VALUES (1);
+-- Insert into OrderDetail
+INSERT INTO order_detail (order_id, book_id, quantity)
+VALUES (1, 1, 1), (1, 2, 2), (2, 2, 1);
 
-INSERT INTO ShoppingCartItem (cart_id, book_id, quantity)
-VALUES
-    (1, 1, 2),
-    (1, 3, 1);
+-- Insert into ShoppingCart
+INSERT INTO shopping_cart (user_id)
+VALUES (1), (2);
 
--- 假设用户2的购物车包含一本图书
-INSERT INTO ShoppingCart (user_id)
-VALUES (2);
-
-INSERT INTO ShoppingCartItem (cart_id, book_id, quantity)
-VALUES (2, 2, 3);
+-- Insert into ShoppingCartItem
+INSERT INTO shopping_cart_item (cart_id, book_id, quantity)
+VALUES (1, 1, 1), (1, 2, 1), (2, 1, 1);
 ```
 
 ## 实体类映射
 
+### 1.用户表
 
+```java
+package com.purexua.entity;
+
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
+public class User {
+  private Integer userId;
+  @NotBlank(message = "用户名不能为空")
+  private String userName;
+  @Length(min = 6, max = 16, message = "密码长度必须在6-16位之间")
+  private String password;
+  @Email(message = "邮箱格式不正确")
+  private String email;
+  private String address;
+  @Digits(integer = 11, fraction = 0, message = "手机号码格式不正确")
+  private String phoneNumber;
+  private Date createdAt;
+  private Date updatedAt;
+
+  private List<Order> orders;
+  private ShoppingCart shoppingCart;
+}
+```
+
+### 2.图书表
+
+```java
+package com.purexua.entity;
+
+import lombok.Data;
+
+@Data
+public class Book {
+  private int bookId;
+  private String title;
+  private String author;
+  private String publisher;
+  private String isbn;
+  private double price;
+  private int stock;
+}
+```
+
+### 3.订单状态表
+
+```java
+package com.purexua.entity;
+
+import lombok.Data;
+
+@Data
+public class OrderStatus {
+  private Integer statusId;
+  private String statusName;
+}
+```
+
+### 4.订单表
+
+```java
+package com.purexua.entity;
+
+import lombok.Data;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
+public class Order {
+  private Integer orderId;
+  private Integer userId;
+  private Date orderDate;
+  private Integer statusId;
+
+  private User user;
+  private OrderStatus orderStatus;
+  private List<OrderItem> orderItems;
+}
+```
+
+### 5.订单详情表
+
+```java
+package com.purexua.entity;
+
+
+import lombok.Data;
+
+@Data
+public class OrderItem {
+  private Integer orderDetailId;
+  private Integer orderId;
+  private Integer bookId;
+  private Integer quantity;
+
+  private Order order;
+  private Book book;
+}
+```
+
+### 6.购物车表
+
+```java
+package com.purexua.entity;
+
+import lombok.Data;
+
+@Data
+public class ShoppingCart {
+  private Integer cartId;
+  private Integer userId;
+
+  private User user;
+}
+```
+
+### 7.购物车明细表
+
+```java
+package com.purexua.entity;
+
+import lombok.Data;
+
+@Data
+public class ShoppingCartItem {
+  private Integer itemId;
+  private Integer cartId;
+  private Integer bookId;
+  private Integer quantity;
+
+  private ShoppingCart shoppingCart;
+  private Book book;
+}
+```
 
 ------
 
