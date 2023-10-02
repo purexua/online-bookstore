@@ -60,10 +60,10 @@ CREATE TABLE `order` (
 );
 ```
 
-### 5.订单详情表
+### 5.订单项
 
 ```mysql
-CREATE TABLE order_detail (
+CREATE TABLE order_item (
                               detail_id INT AUTO_INCREMENT PRIMARY KEY,
                               order_id INT NOT NULL,
                               book_id INT NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE shopping_cart (
 );
 ```
 
-### 7.购物车明细表
+### 7.购物车项
 
 ```mysql
 CREATE TABLE shopping_cart_item (
@@ -222,7 +222,7 @@ public class Order {
 }
 ```
 
-### 5.订单详情表
+### 5.订单项（连接订单和图书）
 
 ```java
 package com.purexua.entity;
@@ -258,7 +258,7 @@ public class ShoppingCart {
 }
 ```
 
-### 7.购物车明细表
+### 7.购物车项（连接图书和购物车）
 
 ```java
 package com.purexua.entity;
@@ -276,6 +276,10 @@ public class ShoppingCartItem {
   private Book book;
 }
 ```
+
+## 接口设计
+
+
 
 ------
 
