@@ -10,4 +10,5 @@ public interface UserMapper {
   void insertUser(User user);
   void deleteUserById(Integer id);
   void updateUser(User user);
+  String queryPasswordByUsername(String username);
 }

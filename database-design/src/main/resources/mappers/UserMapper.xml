@@ -81,4 +81,9 @@
     </set>
     where user_id = #{userId}
   </update>
+  
+  <select id="queryPasswordByUsername" resultType="String">
+    select password from user
+    where user_name = #{username}
+  </select>
 </mapper>

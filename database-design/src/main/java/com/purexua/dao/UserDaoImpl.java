@@ -38,4 +38,8 @@ public class UserDaoImpl implements UserDao {
     userMapper.updateUser(user);
   }
 
+  @Override
+  public String queryPasswordByUsername(String username) {
+    return userMapper.queryPasswordByUsername(username);
+  }
 }

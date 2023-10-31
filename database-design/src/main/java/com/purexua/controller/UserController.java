@@ -42,4 +42,10 @@ public class UserController {
     userService.updateUser(user);
     return "redirect:/success.html";
   }
+
+  @GetMapping(value = "/user/password")
+  @ResponseBody
+  public String queryPasswordByUsername(@RequestParam(value = "username") String username) {
+    return userService.queryPasswordByUsername(username);
+  }
 }
