@@ -46,13 +46,13 @@ export default {
                 url: `http://localhost:3919/serve8080/login?username=${this.loginForm.username}`,
             }).then(res => {
                 this.loading = true
-                if(res.data===''){
+                if (res.data === '') {
                     alert('用户名不存在')
-                }else{
-                    if(res.data.password===this.loginForm.password){
-                        this.$store.commit('user/SAVEUSER',res.data)
+                } else {
+                    if (res.data.password === this.loginForm.password) {
+                        this.$store.commit('userInfo/SAVEUSER', res.data)
                         this.$router.push('/home')
-                    }else{
+                    } else {
                         alert('密码错误')
                     }
                 }
@@ -70,7 +70,7 @@ export default {
 .login_container {
     width: 100%;
     height: 100vh;
-    background: url('../../assets/images/background.jpg') no-repeat;
+    background: url('../assets/images/background.jpg') no-repeat;
     background-size: cover;
 
     .login_form {
@@ -78,7 +78,7 @@ export default {
         width: 80%;
         top: 30vh;
         left: 100%;
-        background: url("../../assets/images/login_form.png") no-repeat;
+        background: url("../assets/images/login_form.png") no-repeat;
         background-size: cover;
         padding: 40px;
 

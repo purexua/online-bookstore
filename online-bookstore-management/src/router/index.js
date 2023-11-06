@@ -1,8 +1,10 @@
 // 该文件专门用于创建整个应用的路由器
 import VueRouter from 'vue-router'
 
-import Login from '../views/login/index.vue'
-import Home from '../views/home/index.vue'
+import Login from '../views/Login.vue'
+import Index from '../views/Index.vue'
+import Home from '../views/index/Home.vue'
+import Book from '../views/index/Book.vue'
 
 const router = new VueRouter({
    mode: 'hash',
@@ -14,10 +16,48 @@ const router = new VueRouter({
          meta: { 'title': '登录' }
       },
       {
-         name: 'home',
-         path: '/home',
-         component: Home,
-         meta: { 'title': '网上书店管理系统' }
+         name: 'index',
+         path: '/',
+         component: Index,
+         meta: { 'title': '网上书店管理系统' },
+         children: [
+            {
+               name: 'home',
+               path: 'home',
+               component: Home,
+               meta: { 'title': '首页' }
+            },
+            {
+               name: 'computer',
+               path: 'computer',
+               component: Book,
+               meta: { 'title': '计算机分区 购买' }
+            },
+            {
+               name: 'history',
+               path: 'history',
+               component: Book,
+               meta: { 'title': '历史分区 购买' }
+            },
+            {
+               name : 'popularscience',
+               path : 'popularscience',
+               component : Book,
+               meta : {'title' : '科普分区 购买'}
+            },
+            {
+               name : 'sciencefiction',
+               path : 'sciencefiction',
+               component : Book,
+               meta : {'title' : '科幻分区 购买'}
+            },
+            {
+               name :'children',
+               path : 'children',
+               component : Book,
+               meta : {'title' : '儿童读物分区 购买'}
+            }
+         ]
       }
    ]
 }

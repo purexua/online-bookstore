@@ -3,7 +3,8 @@ import Vue from 'vue'
 
 //引入Vuex
 import Vuex from 'vuex'
-import user from './user.js'
+import userInfo from './user.js'
+import bookInfo from './book.js'
 
 
 //应用Vuex插件
@@ -13,6 +14,7 @@ Vue.use(Vuex)
 export default new Vuex.Store(
     {
         modules: {
-            user
+            userInfo: userInfo,
+            bookInfo: bookInfo
         }
     })
