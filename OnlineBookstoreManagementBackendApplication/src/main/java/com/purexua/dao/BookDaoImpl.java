@@ -38,4 +38,14 @@ public class BookDaoImpl implements BookDao {
     List<Book> books = bookMapper.selectBooksByType(type);
     return new PageInfo<>(books);
   }
+
+  @Override
+  public int addBook(Book book) {
+    return bookMapper.addBook(book);
+  }
+
+  @Override
+  public Book selectBookByTitle(String title) {
+    return bookMapper.selectBookByTitle(title);
+  }
 }

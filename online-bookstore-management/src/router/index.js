@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Index from '../views/Index.vue'
 import Home from '../views/index/Home.vue'
 import Book from '../views/index/Book.vue'
+import BookForm from '../views/index/BookForm.vue'
 
 const router = new VueRouter({
    mode: 'hash',
@@ -56,6 +57,12 @@ const router = new VueRouter({
                path : 'children',
                component : Book,
                meta : {'title' : '儿童读物分区 购买'}
+            },
+            {
+               name : 'addBook',
+               path : 'addBook',
+               component: BookForm,
+               meta : {'title' : '添加图书'}
             }
          ]
       }

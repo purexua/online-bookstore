@@ -64,4 +64,24 @@ public class BookServiceImpl implements BookService {
     System.out.println(type);
     return myPageInfo;
   }
+
+  @Override
+  public String exitsBook(String title) {
+    Book book = bookDao.selectBookByTitle(title);
+    if (book == null) {
+      return "no";
+    } else {
+      return "yes";
+    }
+  }
+
+  @Override
+  public String addBook(Book book) {
+    if (exitsBook(book.getTitle()).equals("yes")) {
+      return "添加失败 - 已经存在该书籍";
+    } else {
+      bookDao.addBook(book);
+      return "success";
+    }
+  }
 }

@@ -244,5 +244,16 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
    }
    ```
 
-   
 
+8. `http://localhost:8080/book/add`
+
+   请求方式：`POST`
+   param参数：`title` `author` `publisher` `isbn` `price` `stock` `type`
+   返回结果示例：
+
+   ```
+   success
+   ```
+
+9. 
+   

@@ -49,7 +49,11 @@
 
                 <el-menu-item index="3">
                     <i class="el-icon-document"></i>
-                    <span slot="title">图书搜索</span>
+                    <span slot="title">
+                        <router-link :to="{
+                            name: 'addBook',                           
+                        }">添加图书</router-link>
+                    </span>
                 </el-menu-item>
 
                 <el-submenu index="4">

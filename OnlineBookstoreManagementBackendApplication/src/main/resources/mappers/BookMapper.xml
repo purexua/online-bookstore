@@ -11,4 +11,14 @@
   <select id="getAllBooks" resultType="book">
     select * from book
   </select>
+  
+  <insert id="addBook" parameterType="book">
+    insert into book(title,author,publisher,isbn,price,stock,type)
+    values(#{title},#{author},#{publisher},#{isbn},#{price},#{stock},#{type})
+  </insert>
+  
+  <select id="selectBookByTitle" resultType="book">
+    select * from book
+    where title = #{title}
+  </select>
 </mapper>

@@ -18,4 +18,8 @@ public interface BookService {
   MyPageInfo pageInfo(int pageNum, int pageSize);
 
   MyPageInfo pageInfoType(String type, int pageNum, int pageSize);
+
+  String addBook(Book book);
+
+   String exitsBook(String title);
 }

@@ -6,6 +6,7 @@ import com.purexua.tool.MyPageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -50,5 +51,12 @@ public class BookController {
   @GetMapping("/book/page/type/info")
   MyPageInfo bookPageHelpTypePages(@RequestParam("type") String type, @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
     return bookService.pageInfoType(type, pageNum, pageSize);
+  }
+
+  @ResponseBody
+  @PostMapping("/book/add")
+  String addBook(Book book) {
+    System.out.println("添加图书"+book);
+    return bookService.addBook(book);
   }
 }
