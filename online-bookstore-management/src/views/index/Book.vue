@@ -1,6 +1,21 @@
 <template>
     <div>
-        <BookHead></BookHead>
+        <div>
+            <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                <el-form-item label="书名">
+                    <el-input v-model="formInline.title" placeholder="书名"></el-input>
+                </el-form-item>
+                <el-form-item label="作者">
+                    <el-input v-model="formInline.author" placeholder="作者"></el-input>
+                </el-form-item>
+                <el-form-item label="ISBN">
+                    <el-input v-model="formInline.isbn" placeholder="ISBN"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
         <div>
             <el-table :data="tableData" stripe style="width: 100%" height="600">
                 <el-table-column prop="bookId" label="图书ID" width="180">
@@ -73,7 +88,7 @@
 
             <div class="footer">
                 <el-pagination background layout="prev, pager, next" :total="pageInfo.totalItems"
-                    :page-size="pageInfo.pageSize" @current-change="handleCurrentChange">
+                    :page-size="pageInfo.pageSize" @current-change="handleCurrentChange" :current-page="pageInfo.pageNum">
                 </el-pagination>
             </div>
         </div>
@@ -84,7 +99,6 @@
 import axios from 'axios'
 import BookHead from '../../components/BookHead.vue'
 import { Message } from 'element-ui';
-
 export default {
     name: 'Book',
     data() {
@@ -161,6 +175,11 @@ export default {
         };
         return {
             bookType: this.$route.params.bookType,
+            formInline: {
+                title: '',
+                author: '',
+                isbn: '',
+            },
             editForm: {
                 bookId: '',
                 title: '',
@@ -195,6 +214,7 @@ export default {
                 ],
             },
             dialogFormVisible: false,
+            searchChange: false,
         }
     },
     computed: {
@@ -206,9 +226,12 @@ export default {
         },
     },
     components: {
-        BookHead
+        BookHead,
     },
     methods: {
+        onSubmit() {
+            this.handleCurrentChange(1)
+        },
         handleEdit(index, row) {
             console.log(row.title, row.author, row.publisher, row.isbn, row.price, row.stock, row.type)
             this.editForm.bookId = row.bookId
@@ -224,7 +247,7 @@ export default {
         handleDelete(index, row) {
             console.log(row.title, row.author, row.publisher, row.isbn, row.price, row.stock, row.type)
 
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            this.$confirm('此操作将永久删除, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
@@ -242,7 +265,6 @@ export default {
                     }
                 }).catch(err => {
                     console.log(err);
-
                 })
             }).catch(() => {
                 this.$message({
@@ -253,9 +275,21 @@ export default {
 
 
         },
-        handleCurrentChange(val) {
+        handleCurrentChange(val) {           
             this.$store.commit('bookInfo/SETPAGENUM', val)
-            this.$store.dispatch('bookInfo/getBookData', this.bookType)
+            if (this.formInline.title === '' && this.formInline.author === '' && this.formInline.isbn === '') {
+                this.$store.dispatch('bookInfo/getBookData', this.bookType)
+            } else {
+                const data = {
+                    pageNum: this.pageInfo.pageNum,
+                    pageSize: this.pageInfo.pageSize,
+                    title: this.formInline.title,
+                    author: this.formInline.author,
+                    isbn: this.formInline.isbn,
+                    type: this.bookType,
+                }
+                this.$store.dispatch('bookInfo/getBookDataExist', data)
+            }
         },
         exit(formName) {
             this.$refs[formName].validate((valid) => {
@@ -326,6 +360,8 @@ export default {
         $route(to, from) {
             if (to.params.bookType !== this.bookType) {
                 this.bookType = to.params.bookType;
+                // 重置页数为第一页
+                this.$store.commit('bookInfo/SETPAGENUM', 1);
                 this.$store.dispatch('bookInfo/getBookData', this.bookType);
             }
         },

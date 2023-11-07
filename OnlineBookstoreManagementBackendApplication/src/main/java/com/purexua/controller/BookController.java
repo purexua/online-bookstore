@@ -70,4 +70,16 @@ public class BookController {
     System.out.println("删除图书"+bookId);
     return bookService.deleteBookById(bookId);
   }
+
+  @ResponseBody
+  @GetMapping("/book/exist")
+  List<Book> exitsBook(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize, @RequestParam(name = "title" ,required = false) String title, @RequestParam(name = "author" ,required = false) String author, @RequestParam(name = "isbn" ,required = false) String isbn, @RequestParam("type") String type) {
+    return bookService.bookAfterPageHelpExist(pageNum, pageSize, title, author, isbn, type);
+  }
+
+  @ResponseBody
+  @GetMapping("/book/exist/info")
+  MyPageInfo exitsBookPages(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize, @RequestParam(name = "title" ,required = false) String title, @RequestParam(name = "author" ,required = false) String author, @RequestParam(name = "isbn" ,required = false) String isbn, @RequestParam("type") String type) {
+    return bookService.pageInfoExist(pageNum, pageSize, title, author, isbn, type);
+  }
 }

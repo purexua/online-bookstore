@@ -24,4 +24,7 @@ public interface BookDao {
 
   int deleteBookById(Integer bookId);
 
+  List<Book> selectBooksByTitleAuthorIsbnType(String title, String author, String isbn, String type);
+
+  PageInfo<Book> getPageHelpExist(int pageNum, int pageSize, String title, String author, String isbn, String type);
 }

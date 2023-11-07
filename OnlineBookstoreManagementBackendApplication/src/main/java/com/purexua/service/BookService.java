@@ -26,4 +26,10 @@ public interface BookService {
   String updateBook(Book book);
 
   String deleteBookById(Integer bookId);
+
+  List<Book> selectBooksByTitleAuthorIsbnType(String title, String author, String isbn, String type);
+
+  List<Book> bookAfterPageHelpExist(int pageNum, int pageSize, String title, String author, String isbn, String type);
+
+  MyPageInfo pageInfoExist(int pageNum, int pageSize, String title, String author, String isbn, String type);
 }

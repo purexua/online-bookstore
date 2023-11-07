@@ -260,7 +260,7 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
 9. `http://localhost:8080/book/update`
    请求方式：`PUT`
    param参数：`bookId` `title` `author` `publisher` `isbn` `price` `stock` `type`
-   返回结果示例
+   返回结果示例：
 
    ```
    success
@@ -271,12 +271,94 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
 10. `http://localhost:8080/book/delete`
     请求方式：`DELETE`
     param参数：`bookId` 
-    返回结果示例
+    返回结果示例：
 
     ```
     success
     ---
     删除失败 - 不存在该书籍
+    ```
+
+11. `http://localhost:8080/book/exist`
+    请求方式：`GET`
+    param参数：`pageNum` `pageSize` `title (required = false)` `author (required = false)` `isbn (required = false)` `type`
+    返回结果示例：
+
+    ```
+    ---
+    http://localhost:8080/book/exist?title=深入
+    ---
+    
+    [
+        {
+            "bookId": 190,
+            "title": "深入理解计算机系统",
+            "author": "Randal E. Bryant",
+            "publisher": "机械工业出版社",
+            "isbn": "9787111574297",
+            "price": 29.99,
+            "stock": 30,
+            "type": "计算机"
+        },
+        {
+            "bookId": 196,
+            "title": "深入理解计算机系统",
+            "author": "Randal E. Bryant",
+            "publisher": "机械工业出版社",
+            "isbn": "9787111574297",
+            "price": 23.99,
+            "stock": 60,
+            "type": "计算机"
+        },
+        {
+            "bookId": 202,
+            "title": "深入理解计算机系统",
+            "author": "Randal E. Bryant",
+            "publisher": "机械工业出版社",
+            "isbn": "9787111574297",
+            "price": 17.99,
+            "stock": 90,
+            "type": "计算机"
+        },
+        {
+            "bookId": 208,
+            "title": "深入理解计算机系统",
+            "author": "Randal E. Bryant",
+            "publisher": "机械工业出版社",
+            "isbn": "9787111574297",
+            "price": 11.99,
+            "stock": 120,
+            "type": "计算机"
+        },
+        {
+            "bookId": 214,
+            "title": "深入理解计算机系统",
+            "author": "Randal E. Bryant",
+            "publisher": "机械工业出版社",
+            "isbn": "9787111574297",
+            "price": 5.99,
+            "stock": 150,
+            "type": "计算机"
+        }
+    ]
+    ```
+
+12. `http://localhost:8080/book/exist/info`
+    请求方式：`GET`
+    param参数：`pageNum` `pageSize` `title (required = false)` `author (required = false)` `isbn (required = false)` 
+    返回结果示例：
+
+    ```
+    ---
+    http://localhost:8080/book/exist/info?pageNum=1&pageSize=5&title=深入&type=计算机
+    ---
+    
+    {
+        "totalPages": 3,
+        "totalItems": 14,
+        "pageNum": 1,
+        "pageSize": 5
+    }
     ```
 
     

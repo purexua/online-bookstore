@@ -38,4 +38,22 @@
     delete from book
     where book_id = #{bookId}
   </delete>
+  
+  <select id="selectBooksByTitleAuthorIsbnType" resultType="book">
+    select * from book
+    <where>
+      <if test="title != null and title != ''">
+        title like concat('%',#{title},'%')
+      </if>
+      <if test="author != null and author != ''">
+        and author like concat('%',#{author},'%')
+      </if>
+      <if test="isbn != null and isbn != ''">
+        and isbn like concat('%',#{isbn},'%')
+      </if>
+      <if test="type != null and type != ''">
+        and type = #{type}
+      </if>
+    </where>
+  </select>
 </mapper>

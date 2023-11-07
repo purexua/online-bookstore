@@ -63,4 +63,15 @@ public class BookDaoImpl implements BookDao {
   public int deleteBookById(Integer bookId) {
     return bookMapper.deleteBookById(bookId);
   }
+
+  @Override
+  public List<Book> selectBooksByTitleAuthorIsbnType(String title, String author, String isbn, String type) {
+    return bookMapper.selectBooksByTitleAuthorIsbnType(title, author, isbn, type);
+  }
+  @Override
+  public PageInfo<Book> getPageHelpExist(int pageNum, int pageSize, String title, String author, String isbn, String type) {
+    PageHelper.startPage(pageNum, pageSize);
+    List<Book> books = bookMapper.selectBooksByTitleAuthorIsbnType(title, author, isbn, type);
+    return new PageInfo<>(books);
+  }
 }

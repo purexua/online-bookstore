@@ -104,4 +104,29 @@ public class BookServiceImpl implements BookService {
       return "删除失败 - 不存在该书籍";
     }
   }
+
+  @Override
+  public List<Book> selectBooksByTitleAuthorIsbnType(String title, String author, String isbn, String type) {
+    return bookDao.selectBooksByTitleAuthorIsbnType(title, author, isbn, type);
+  }
+
+  @Override
+  public List<Book> bookAfterPageHelpExist(int pageNum, int pageSize, String title, String author, String isbn, String type) {
+    PageInfo<Book> bookPageInfo = bookDao.getPageHelpExist(pageNum, pageSize, title, author, isbn, type);
+    System.out.println(bookPageInfo.getTotal());
+    return bookPageInfo.getList();
+  }
+
+  @Override
+  public MyPageInfo pageInfoExist(int pageNum, int pageSize, String title, String author, String isbn, String type) {
+    PageInfo<Book> bookPageInfo = bookDao.getPageHelpExist(pageNum, pageSize, title, author, isbn, type);
+
+    MyPageInfo myPageInfo = new MyPageInfo();
+    myPageInfo.setTotalPages(bookPageInfo.getPages());
+    myPageInfo.setTotalItems((int) bookPageInfo.getTotal());
+    myPageInfo.setPageNum(bookPageInfo.getPageNum());
+    myPageInfo.setPageSize(bookPageInfo.getPageSize());
+    System.out.println(myPageInfo);
+    return myPageInfo;
+  }
 }
