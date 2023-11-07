@@ -5,10 +5,7 @@ import com.purexua.service.BookService;
 import com.purexua.tool.MyPageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,5 +55,19 @@ public class BookController {
   String addBook(Book book) {
     System.out.println("添加图书"+book);
     return bookService.addBook(book);
+  }
+
+  @ResponseBody
+  @PutMapping("/book/update")
+  String updateBook(Book book) {
+    System.out.println("更新图书"+book);
+    return bookService.updateBook(book);
+  }
+
+  @ResponseBody
+  @DeleteMapping("/book/delete/{bookId}")
+  String deleteBookById(@PathVariable("bookId") Integer bookId) {
+    System.out.println("删除图书"+bookId);
+    return bookService.deleteBookById(bookId);
   }
 }

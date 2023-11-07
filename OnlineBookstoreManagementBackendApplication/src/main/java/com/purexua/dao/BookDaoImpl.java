@@ -45,7 +45,22 @@ public class BookDaoImpl implements BookDao {
   }
 
   @Override
+  public Book selectBookById(Integer bookId) {
+    return bookMapper.selectBookById(bookId);
+  }
+
+  @Override
   public Book selectBookByTitle(String title) {
     return bookMapper.selectBookByTitle(title);
+  }
+
+  @Override
+  public int updateBook(Book book) {
+    return bookMapper.updateBook(book);
+  }
+
+  @Override
+  public int deleteBookById(Integer bookId) {
+    return bookMapper.deleteBookById(bookId);
   }
 }

@@ -17,4 +17,11 @@ public interface BookDao {
   int addBook(Book book);
 
   Book selectBookByTitle(String title);
+
+  Book selectBookById(Integer bookId);
+
+  int updateBook(Book book);
+
+  int deleteBookById(Integer bookId);
+
 }

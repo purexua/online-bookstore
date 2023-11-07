@@ -66,8 +66,8 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public String exitsBook(String title) {
-    Book book = bookDao.selectBookByTitle(title);
+  public String exitsBook(Integer bookId) {
+    Book book = bookDao.selectBookById(bookId);
     if (book == null) {
       return "no";
     } else {
@@ -77,11 +77,31 @@ public class BookServiceImpl implements BookService {
 
   @Override
   public String addBook(Book book) {
-    if (exitsBook(book.getTitle()).equals("yes")) {
+    if (exitsBook(book.getBookId()).equals("yes")) {
       return "添加失败 - 已经存在该书籍";
     } else {
       bookDao.addBook(book);
       return "success";
+    }
+  }
+
+  @Override
+  public String updateBook(Book book) {
+    if (exitsBook(book.getBookId()).equals("yes")) {
+      bookDao.updateBook(book);
+      return "success";
+    } else {
+      return "更新失败 - 不存在该书籍";
+    }
+  }
+
+  @Override
+  public String deleteBookById(Integer bookId) {
+    if (exitsBook(bookId).equals("yes")) {
+      bookDao.deleteBookById(bookId);
+      return "success";
+    } else {
+      return "删除失败 - 不存在该书籍";
     }
   }
 }

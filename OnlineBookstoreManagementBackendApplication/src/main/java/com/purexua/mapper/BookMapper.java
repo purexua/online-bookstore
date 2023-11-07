@@ -11,4 +11,10 @@ public interface BookMapper {
   int addBook(Book book);
 
   Book selectBookByTitle(String title);
+
+  int updateBook(Book book);
+
+  Book selectBookById(Integer bookId);
+
+  int deleteBookById(Integer bookId);
 }

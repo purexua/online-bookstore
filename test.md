@@ -253,7 +253,30 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
 
    ```
    success
+   ---
+   添加失败 - 已经存在该书籍
    ```
 
-9. 
-   
+9. `http://localhost:8080/book/update`
+   请求方式：`PUT`
+   param参数：`bookId` `title` `author` `publisher` `isbn` `price` `stock` `type`
+   返回结果示例
+
+   ```
+   success
+   ---
+   更新失败 - 不存在该书籍
+   ```
+
+10. `http://localhost:8080/book/delete`
+    请求方式：`DELETE`
+    param参数：`bookId` 
+    返回结果示例
+
+    ```
+    success
+    ---
+    删除失败 - 不存在该书籍
+    ```
+
+    

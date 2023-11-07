@@ -1,7 +1,7 @@
 <template>
-    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
         <el-form-item label="书名" prop="title">
-            <el-input type="text" v-model="ruleForm.title" autocomplete="off"></el-input>
+            <el-input type="text" v-model="ruleForm.title" autocomplete="off" ></el-input>
         </el-form-item>
 
         <el-form-item label="作者" prop="author">

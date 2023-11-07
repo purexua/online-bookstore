@@ -21,5 +21,9 @@ public interface BookService {
 
   String addBook(Book book);
 
-   String exitsBook(String title);
+   String exitsBook(Integer bookId);
+
+  String updateBook(Book book);
+
+  String deleteBookById(Integer bookId);
 }

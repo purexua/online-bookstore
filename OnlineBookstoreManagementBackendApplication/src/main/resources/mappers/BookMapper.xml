@@ -21,4 +21,21 @@
     select * from book
     where title = #{title}
   </select>
+  
+  <select id="selectBookById" resultType="book">
+    select * from book
+    where book_id = #{bookId}
+  </select>
+  
+  <update id="updateBook" parameterType="book">
+    update book
+    set title = #{title},author = #{author},publisher = #{publisher},isbn = #{isbn},price = #{price},stock =
+    #{stock},type = #{type}
+    where book_id = #{bookId}
+  </update>
+  
+  <delete id="deleteBookById" parameterType="int">
+    delete from book
+    where book_id = #{bookId}
+  </delete>
 </mapper>
