@@ -5,5 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-  public User login(String username);
+  User login(String username);
+
+  String updatePassword( Integer userId,String password);
+
+  String updateUser(User user);
 }

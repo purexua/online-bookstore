@@ -15,4 +15,14 @@ public class UserDaoImpl implements UserDao {
   public User selectUserByUsername(String username) {
     return userMapper.selectUserByUsername(username);
   }
+
+  @Override
+  public Integer updateUserPass( Integer userId,String password) {
+    return userMapper.updateUserPass(userId,password);
+  }
+
+  @Override
+  public Integer updateUser(User user) {
+    return userMapper.updateUser(user);
+  }
 }

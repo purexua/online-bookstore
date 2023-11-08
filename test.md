@@ -3,30 +3,45 @@
 user 表
 
 ```mysql
-CREATE TABLE user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
+CREATE TABLE user
+(
+    user_id      INT AUTO_INCREMENT PRIMARY KEY,
+    user_name    VARCHAR(255) NOT NULL,
+    password     VARCHAR(255) NOT NULL,
+    real_name    VARCHAR(255) NOT NULL,
+    email        VARCHAR(100),
+    address      VARCHAR(255),
+    phone_number VARCHAR(20),
     balance DECIMAL(10, 2) NOT NULL
 );
 
 #数据模拟
-INSERT INTO user (username, password, balance) VALUES ('user1', 'password1', 100.00);
-INSERT INTO user (username, password, balance) VALUES ('user2', 'password2', 200.00);
-INSERT INTO user (username, password, balance) VALUES ('user3', 'password3', 300.00);
-INSERT INTO user (username, password, balance) VALUES ('user4', 'password4', 400.00);
-INSERT INTO user (username, password, balance) VALUES ('user5', 'password5', 500.00);
-INSERT INTO user (username, password, balance) VALUES ('user6', 'password6', 600.00);
-INSERT INTO user (username, password, balance) VALUES ('user7', 'password7', 700.00);
-INSERT INTO user (username, password, balance) VALUES ('user8', 'password8', 800.00);
-INSERT INTO user (username, password, balance) VALUES ('user9', 'password9', 900.00);
-INSERT INTO user (username, password, balance) VALUES ('user10', 'password10', 1000.00);
-
+INSERT INTO user (user_name, password, real_name, email, address, phone_number, balance) VALUES
+('张三', 'zhangsan123', '张三', 'zhangsan@example.com', '北京市朝阳区', '13811112222', 1000.00),
+('李四', 'lisi456', '李四', 'lisi@example.com', '上海市浦东新区', '13911113333', 1500.50),
+('王五', 'wangwu789', '王五', 'wangwu@example.com', '广州市天河区', '13611114444', 800.25),
+('赵六', 'zhaoliu012', '赵六', 'zhaoliu@example.com', '深圳市福田区', '13711115555', 2000.00),
+('孙七', 'sunqi234', '孙七', 'sunqi@example.com', '重庆市渝北区', '13611116666', 3000.00),
+('周八', 'zhouba567', '周八', 'zhouba@example.com', '成都市武侯区', '13911117777', 1200.75),
+('吴九', 'wuji890', '吴九', 'wuji@example.com', '杭州市西湖区', '13811118888', 2500.50),
+('郑十', 'zhengshi345', '郑十', 'zhengshi@example.com', '南京市鼓楼区', '13911119999', 1800.25),
+('刘一', 'liuyi678', '刘一', 'liuyi@example.com', '武汉市江汉区', '13711112211', 2100.00),
+('陈二', 'chener345', '陈二', 'chener@example.com', '苏州市姑苏区', '13611113322', 1600.50),
+('许三', 'xusan678', '许三', 'xusan@example.com', '西安市雁塔区', '13811114433', 2800.25),
+('丁四', 'dingsi901', '丁四', 'dingsi@example.com', '青岛市市南区', '13911115544', 1500.00),
+('胡五', 'huwu234', '胡五', 'huwu@example.com', '长沙市岳麓区', '13711116655', 3200.00),
+('朱六', 'zhuliu567', '朱六', 'zhuliu@example.com', '福州市鼓楼区', '13611117766', 2000.75),
+('杨七', 'yangqi890', '杨七', 'yangqi@example.com', '沈阳市沈河区', '13811118877', 3500.50),
+('何八', 'heba123', '何八', 'heba@example.com', '济南市历下区', '13911119988', 1900.25),
+('林九', 'linji345', '林九', 'linji@example.com', '南宁市青秀区', '13711112200', 2400.00),
+('罗十', 'luoshi678', '罗十', 'luoshi@example.com', '合肥市蜀山区', '13811113300', 1700.50),
+('宋一', 'songyi901', '宋一', 'songyi@example.com', '石家庄市长安区', '13611114400', 3000.25),
+('姜二', 'jianger234', '姜二', 'jianger@example.com', '太原市小店区', '13711115500', 2200.00);
 ```
 
 book 表
 
-```
+```mysql
 CREATE TABLE book (
                        book_id INT AUTO_INCREMENT PRIMARY KEY,
                        title VARCHAR(255) NOT NULL,
@@ -359,6 +374,24 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
         "pageNum": 1,
         "pageSize": 5
     }
+    ```
+
+13. `http://localhost:8080/user/password`
+    请求方式：`PUT`
+    param参数：`id` `password`
+    返回结果示例
+
+    ```
+    success
+    ```
+
+14. `http://localhost:8080/user`
+    请求方式：`PUT`
+    param参数：`userId` `realName`  `password` `realName` `email` `address` `phoneNumber` `balance`
+    返回结果示例：
+
+    ```
+    success
     ```
 
     

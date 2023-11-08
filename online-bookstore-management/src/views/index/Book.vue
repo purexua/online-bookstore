@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>{{ this.bookType }}类分区</h1>
         <div>
             <el-form :inline="true" :model="formInline" class="demo-form-inline">
                 <el-form-item label="书名">
@@ -17,7 +18,7 @@
             </el-form>
         </div>
         <div>
-            <el-table :data="tableData" stripe style="width: 100%" height="600">
+            <el-table :data="tableData" stripe style="width: 100%" height="530">
                 <el-table-column prop="bookId" label="图书ID" width="180">
                 </el-table-column>
                 <el-table-column prop="title" label="书名" width="180">
@@ -233,7 +234,7 @@ export default {
             this.handleCurrentChange(1)
         },
         handleEdit(index, row) {
-            console.log(row.title, row.author, row.publisher, row.isbn, row.price, row.stock, row.type)
+            // console.log(row.title, row.author, row.publisher, row.isbn, row.price, row.stock, row.type)
             this.editForm.bookId = row.bookId
             this.editForm.title = row.title
             this.editForm.author = row.author
@@ -245,8 +246,7 @@ export default {
             this.dialogFormVisible = true
         },
         handleDelete(index, row) {
-            console.log(row.title, row.author, row.publisher, row.isbn, row.price, row.stock, row.type)
-
+            // console.log(row.title, row.author, row.publisher, row.isbn, row.price, row.stock, row.type)
             this.$confirm('此操作将永久删除, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
@@ -257,11 +257,17 @@ export default {
                     url: `http://localhost:3919/serve8080/book/delete/${row.bookId}`,
                 }).then(res => {
                     if (res.data === "success") {
-                        Message.success('删除图书信息成功！');
+                        this.$message({
+                            type: 'success',
+                            message: '删除图书信息成功！'
+                        });
                         // 更新表格数据
                         this.$store.dispatch('bookInfo/getBookData', this.bookType);
                     } else {
-                        Message.error(res.data);
+                        this.$message({
+                            type: 'error',
+                            message: res.data                        
+                        })
                     }
                 }).catch(err => {
                     console.log(err);
@@ -303,7 +309,10 @@ export default {
                     this.editForm.price = ''
                     this.editForm.stock = ''
                     this.editForm.type = ''
-                    Message.warning('取消修改图书信息！')
+                    this.$message({
+                        type: 'info',
+                        message: '取消修改图书信息！'
+                    });
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -329,11 +338,17 @@ export default {
                         }
                     }).then(res => {
                         if (res.data === "success") {
-                            Message.success('修改图书信息成功！');
+                            this.$message({
+                                type: 'success',
+                                message: '修改图书信息成功！'
+                            });
                             // 更新表格数据
                             this.$store.dispatch('bookInfo/getBookData', this.bookType);
                         } else {
-                            Message.error(res.data);
+                            this.$message({
+                                type : 'error',
+                                message : res.data
+                            });
                         }
                     }).catch(err => {
                         console.log(err);

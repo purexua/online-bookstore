@@ -6,6 +6,8 @@ import Index from '../views/Index.vue'
 import Home from '../views/index/Home.vue'
 import Book from '../views/index/Book.vue'
 import BookForm from '../views/index/BookForm.vue'
+import ChangePass from '../views/index/ChangePass.vue'
+import ChangeInfo from '../views/index/ChangeInfo.vue'
 
 const router = new VueRouter({
    mode: 'hash',
@@ -63,6 +65,18 @@ const router = new VueRouter({
                path : 'addBook',
                component: BookForm,
                meta : {'title' : '添加图书'}
+            },
+            {
+               name :'changePass',
+               path : 'changePass',
+               component: ChangePass,
+               meta : {'title' : '修改密码'}
+            },
+            {
+              name :'changeInfo',
+               path : 'changeInfo',
+               component: ChangeInfo,
+               meta : {'title' : '修改个人信息'}
             }
          ]
       }

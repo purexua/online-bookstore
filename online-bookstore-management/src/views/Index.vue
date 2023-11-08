@@ -51,7 +51,7 @@
                     <i class="el-icon-document"></i>
                     <span slot="title">
                         <router-link :to="{
-                            name: 'addBook',                           
+                            name: 'addBook',
                         }">添加图书</router-link>
                     </span>
                 </el-menu-item>
@@ -63,12 +63,20 @@
                     </template>
                     <el-menu-item-group>
                         <template slot="title">设置</template>
-                        <el-menu-item index="4-1">修改密码</el-menu-item>
+                        <el-menu-item index="4-1">
+                            <router-link :to="{
+                                name: 'changePass',
+                            }">修改密码</router-link>
+                        </el-menu-item>
                     </el-menu-item-group>
                     <el-submenu index="4-2">
                         <template slot="title">信息</template>
                         <el-menu-item index="4-2-1">余额</el-menu-item>
-                        <el-menu-item index="4-2-2">修改信息</el-menu-item>
+                        <el-menu-item index="4-2-2">
+                            <router-link :to="{
+                                name: 'changeInfo',
+                            }">修改信息</router-link>
+                        </el-menu-item>
                     </el-submenu>
                 </el-submenu>
             </el-menu>

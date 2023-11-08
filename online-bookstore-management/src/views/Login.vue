@@ -33,8 +33,8 @@ export default {
     data() {
         return {
             loginForm: {
-                username: 'user1',
-                password: 'password1'
+                username: 'test1',
+                password: '123'
             },
             loading: false,
         }
@@ -47,13 +47,19 @@ export default {
             }).then(res => {
                 this.loading = true
                 if (res.data === '') {
-                    alert('用户名不存在')
+                    this.$message({
+                        message: '用户名不存在',
+                        type: 'error'
+                    })
                 } else {
                     if (res.data.password === this.loginForm.password) {
                         this.$store.commit('userInfo/SAVEUSER', res.data)
                         this.$router.push('/home')
                     } else {
-                        alert('密码错误')
+                        this.$message({
+                            message: '密码错误',
+                            type: 'error'
+                        })
                     }
                 }
             }).catch(err => {

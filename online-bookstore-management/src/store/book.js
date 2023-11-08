@@ -74,7 +74,7 @@ export default {
 			totalpages: 0,
 			totalrecords: 0,
 			pageNum: 1,
-			pageSize: 10,
+			pageSize: 9,
 		},
 	},
 	getters: {},

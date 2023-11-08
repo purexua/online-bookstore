@@ -6,6 +6,20 @@
 <mapper namespace="com.purexua.mapper.UserMapper">
   <select id="selectUserByUsername" resultType="user">
     select * from user
-    where username = #{username}
+    where user_name = #{username}
   </select>
+  <update id="updateUserPass">
+    update user
+    set password = #{password}
+    where user_id = #{userId}
+  </update>
+  
+  <update id="updateUser" >
+    update user
+    set real_name = #{realName},
+    email = #{email},
+    address = #{address},
+    phone_number = #{phoneNumber}
+    where user_id = #{userId}
+  </update>
 </mapper>
