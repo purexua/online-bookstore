@@ -8,6 +8,7 @@ import Book from '../views/index/Book.vue'
 import BookForm from '../views/index/BookForm.vue'
 import ChangePass from '../views/index/ChangePass.vue'
 import ChangeInfo from '../views/index/ChangeInfo.vue'
+import Recharge from '../views/index/Recharge.vue'
 
 const router = new VueRouter({
    mode: 'hash',
@@ -43,40 +44,46 @@ const router = new VueRouter({
                meta: { 'title': '历史分区 购买' }
             },
             {
-               name : 'popularscience',
-               path : 'popularscience',
-               component : Book,
-               meta : {'title' : '科普分区 购买'}
+               name: 'popularscience',
+               path: 'popularscience',
+               component: Book,
+               meta: { 'title': '科普分区 购买' }
             },
             {
-               name : 'sciencefiction',
-               path : 'sciencefiction',
-               component : Book,
-               meta : {'title' : '科幻分区 购买'}
+               name: 'sciencefiction',
+               path: 'sciencefiction',
+               component: Book,
+               meta: { 'title': '科幻分区 购买' }
             },
             {
-               name :'children',
-               path : 'children',
-               component : Book,
-               meta : {'title' : '儿童读物分区 购买'}
+               name: 'children',
+               path: 'children',
+               component: Book,
+               meta: { 'title': '儿童读物分区 购买' }
             },
             {
-               name : 'addBook',
-               path : 'addBook',
+               name: 'addBook',
+               path: 'addBook',
                component: BookForm,
-               meta : {'title' : '添加图书'}
+               meta: { 'title': '添加图书' }
             },
             {
-               name :'changePass',
-               path : 'changePass',
+               name: 'changePass',
+               path: 'changePass',
                component: ChangePass,
-               meta : {'title' : '修改密码'}
+               meta: { 'title': '修改密码' }
             },
             {
-              name :'changeInfo',
-               path : 'changeInfo',
+               name: 'changeInfo',
+               path: 'changeInfo',
                component: ChangeInfo,
-               meta : {'title' : '修改个人信息'}
+               meta: { 'title': '修改个人信息' }
+            },
+            {
+               name: 'recharge',
+               path: 'recharge',
+               component: Recharge,
+               meta: { 'title': '充值系统' }
             }
          ]
       }

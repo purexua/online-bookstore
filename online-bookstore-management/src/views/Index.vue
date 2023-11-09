@@ -71,7 +71,11 @@
                     </el-menu-item-group>
                     <el-submenu index="4-2">
                         <template slot="title">信息</template>
-                        <el-menu-item index="4-2-1">余额</el-menu-item>
+                        <el-menu-item index="4-2-1">
+                            <router-link :to="{
+                                name: 'recharge',
+                            }">充值系统</router-link>
+                        </el-menu-item>
                         <el-menu-item index="4-2-2">
                             <router-link :to="{
                                 name: 'changeInfo',

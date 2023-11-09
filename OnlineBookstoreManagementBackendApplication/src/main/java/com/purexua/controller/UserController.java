@@ -32,4 +32,10 @@ public class UserController {
   public String updateUser(User user) {
     return userService.updateUser(user);
   }
+
+  @ResponseBody
+  @PutMapping("/user/recharge")
+  public String updateUserBalance(@RequestParam("userId") Integer userId, @RequestParam("balance") Double balance) {
+    return userService.updateUserBalance(userId, balance);
+  }
 }

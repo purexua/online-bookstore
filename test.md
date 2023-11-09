@@ -379,7 +379,7 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
 13. `http://localhost:8080/user/password`
     请求方式：`PUT`
     param参数：`id` `password`
-    返回结果示例
+    返回结果示例：
 
     ```
     success
@@ -388,6 +388,15 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
 14. `http://localhost:8080/user`
     请求方式：`PUT`
     param参数：`userId` `realName`  `password` `realName` `email` `address` `phoneNumber` `balance`
+    返回结果示例：
+
+    ```
+    success
+    ```
+
+15. `http://localhost:8080/user/recharge`
+    请求方式：`PUT`
+    param参数：`userId` `balance`
     返回结果示例：
 
     ```

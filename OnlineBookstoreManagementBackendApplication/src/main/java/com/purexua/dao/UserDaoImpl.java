@@ -25,4 +25,9 @@ public class UserDaoImpl implements UserDao {
   public Integer updateUser(User user) {
     return userMapper.updateUser(user);
   }
+
+  @Override
+  public Integer updateUserBalance(Integer userId, Double balance) {
+    return userMapper.updateUserBalance(userId, balance);
+  }
 }

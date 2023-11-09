@@ -10,4 +10,6 @@ public interface UserService {
   String updatePassword( Integer userId,String password);
 
   String updateUser(User user);
+
+  String updateUserBalance(Integer userId, Double balance);
 }

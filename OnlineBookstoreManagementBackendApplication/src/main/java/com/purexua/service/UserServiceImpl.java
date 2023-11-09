@@ -29,4 +29,11 @@ public class UserServiceImpl implements UserService{
     System.out.println("用户 ID "+user.getUserId()+" update user "+user);
     return "success";
   }
+
+  @Override
+  public String updateUserBalance(Integer userId, Double balance) {
+    userDao.updateUserBalance(userId, balance);
+    System.out.println("用户 ID "+userId+" update balance + "+balance);
+    return "success";
+  }
 }

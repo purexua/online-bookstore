@@ -22,4 +22,10 @@
     phone_number = #{phoneNumber}
     where user_id = #{userId}
   </update>
+  
+  <update id="updateUserBalance" >
+    update user
+    set balance = #{balance} + balance
+    where user_id = #{userId}
+  </update>
 </mapper>

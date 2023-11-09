@@ -7,4 +7,6 @@ public interface UserDao {
   Integer updateUserPass( Integer userId,String password);
 
   Integer updateUser(User user);
+
+  Integer updateUserBalance(Integer userId, Double balance);
 }

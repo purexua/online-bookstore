@@ -1,12 +1,14 @@
 <template>
-    <h1>分区</h1>
+    <div>
+        <h1>分区</h1>       
+    </div>
 </template>
 
 <script>
 export default {
     name: 'BookHead',
-    mounted(){
-        
+    mounted() {
+
     },
 }
 </script>
