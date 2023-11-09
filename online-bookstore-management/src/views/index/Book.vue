@@ -35,9 +35,10 @@
                 </el-table-column>
                 <el-table-column align="right" label="操作">
                     <template slot-scope="scope">
-                        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-                        <el-button size="mini" type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+                            v-if="user.userId === 1">Edit</el-button>
+                        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)"
+                            v-if="user.userId === 1">Delete</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -99,7 +100,6 @@
 <script>
 import axios from 'axios'
 import BookHead from '../../components/BookHead.vue'
-import { Message } from 'element-ui';
 export default {
     name: 'Book',
     data() {
@@ -225,6 +225,9 @@ export default {
         tableData() {
             return this.$store.state.bookInfo.tableData
         },
+        user() {
+            return this.$store.state.userInfo.user
+        }
     },
     components: {
         BookHead,
@@ -266,7 +269,7 @@ export default {
                     } else {
                         this.$message({
                             type: 'error',
-                            message: res.data                        
+                            message: res.data
                         })
                     }
                 }).catch(err => {
@@ -281,7 +284,7 @@ export default {
 
 
         },
-        handleCurrentChange(val) {           
+        handleCurrentChange(val) {
             this.$store.commit('bookInfo/SETPAGENUM', val)
             if (this.formInline.title === '' && this.formInline.author === '' && this.formInline.isbn === '') {
                 this.$store.dispatch('bookInfo/getBookData', this.bookType)
@@ -346,8 +349,8 @@ export default {
                             this.$store.dispatch('bookInfo/getBookData', this.bookType);
                         } else {
                             this.$message({
-                                type : 'error',
-                                message : res.data
+                                type: 'error',
+                                message: res.data
                             });
                         }
                     }).catch(err => {

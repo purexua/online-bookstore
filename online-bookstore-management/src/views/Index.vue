@@ -47,7 +47,7 @@
                     </el-menu-item-group>
                 </el-submenu>
 
-                <el-menu-item index="3">
+                <el-menu-item index="3" v-if="user.userId === 1">
                     <i class="el-icon-document"></i>
                     <span slot="title">
                         <router-link :to="{
@@ -71,7 +71,7 @@
                     </el-menu-item-group>
                     <el-submenu index="4-2">
                         <template slot="title">信息</template>
-                        <el-menu-item index="4-2-1">
+                        <el-menu-item index="4-2-1" v-if="user.userId !== 1">
                             <router-link :to="{
                                 name: 'recharge',
                             }">充值系统</router-link>
@@ -100,6 +100,9 @@ import Header from '../components/Header.vue'
 export default {
     name: 'Index',
     computed: {
+        user(){
+            return this.$store.state.userInfo.user
+        }
     },
     components: {
         Header,

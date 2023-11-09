@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>充值系统</h1>
+        <h1 class="info">您当前的账户余额为 <span>{{ user.balance }}</span></h1>
         <div class="container">
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="充值金额" prop="money">
@@ -121,5 +122,17 @@ export default {
     align-items: center;
     flex-direction: row;
     margin-top: 50px;
+}
+
+.info {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #666;
+}
+
+.info span {
+    color: #f56c6c;
 }
 </style>

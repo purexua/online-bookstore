@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <p>欢迎来到，网上书店。</p>
+    <p v-if="user.userId === 1">欢迎来到，超级后台！</p>
+    <p v-else>欢迎来到，网上书店。</p>
     <el-dropdown class="icon" @command="handleCommand">
       <el-button type="text">
         <el-avatar icon="el-icon-user-solid"></el-avatar>
@@ -8,7 +9,8 @@
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="a">修改信息</el-dropdown-item>
         <el-dropdown-item command="b">修改密码</el-dropdown-item>
-        <el-dropdown-item command="c">充值</el-dropdown-item>
+        <el-dropdown-item command="c" v-if="user.userId !== 1">充值</el-dropdown-item>
+        <el-dropdown-item command="d">登出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -35,6 +37,11 @@ export default {
       } else if (command === 'c') {
         this.$router.push({
           name: 'recharge',
+        })
+      }
+      else if (command === 'd') {
+        this.$router.push({
+          name: 'login',
         })
       }
     }
