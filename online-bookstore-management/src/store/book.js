@@ -58,6 +58,16 @@ export default {
 				console.error(error);
 			}
 		},
+		async getBookById(context, bookId) {
+			//data = { bookId }
+			try {
+				const response1 = await axios.get(`http://localhost:3919/serve8080/book/${bookId}`, {
+				});
+				context.commit('GETBOOKBYID', response1.data);
+			} catch (error) {
+				console.error(error);
+			}
+		},
 	},
 	mutations: {
 		GETBOOKDATA(state, data) {
@@ -67,15 +77,19 @@ export default {
 		SETPAGENUM(state, pageNum) {
 			state.pageInfo.pageNum = pageNum;
 		},
+		GETBOOKBYID(state, data) {
+			state.bookById = data;
+		},
 	},
 	state: {
 		tableData: [],
 		pageInfo: {
 			totalpages: 0,
-			totalrecords: 0,
+			totalItems: 0,
 			pageNum: 1,
 			pageSize: 9,
 		},
+		bookById: {},
 	},
 	getters: {},
 }

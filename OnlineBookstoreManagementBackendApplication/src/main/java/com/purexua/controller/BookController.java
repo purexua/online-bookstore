@@ -53,33 +53,40 @@ public class BookController {
   @ResponseBody
   @PostMapping("/book/add")
   String addBook(Book book) {
-    System.out.println("添加图书"+book);
+    System.out.println("添加图书" + book);
     return bookService.addBook(book);
   }
 
   @ResponseBody
   @PutMapping("/book/update")
   String updateBook(Book book) {
-    System.out.println("更新图书"+book);
+    System.out.println("更新图书" + book);
     return bookService.updateBook(book);
   }
 
   @ResponseBody
   @DeleteMapping("/book/delete/{bookId}")
   String deleteBookById(@PathVariable("bookId") Integer bookId) {
-    System.out.println("删除图书"+bookId);
+    System.out.println("删除图书" + bookId);
     return bookService.deleteBookById(bookId);
   }
 
   @ResponseBody
   @GetMapping("/book/exist")
-  List<Book> exitsBook(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize, @RequestParam(name = "title" ,required = false) String title, @RequestParam(name = "author" ,required = false) String author, @RequestParam(name = "isbn" ,required = false) String isbn, @RequestParam("type") String type) {
+  List<Book> exitsBook(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize, @RequestParam(name = "title", required = false) String title, @RequestParam(name = "author", required = false) String author, @RequestParam(name = "isbn", required = false) String isbn, @RequestParam("type") String type) {
     return bookService.bookAfterPageHelpExist(pageNum, pageSize, title, author, isbn, type);
   }
 
   @ResponseBody
   @GetMapping("/book/exist/info")
-  MyPageInfo exitsBookPages(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize, @RequestParam(name = "title" ,required = false) String title, @RequestParam(name = "author" ,required = false) String author, @RequestParam(name = "isbn" ,required = false) String isbn, @RequestParam("type") String type) {
+  MyPageInfo exitsBookPages(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize, @RequestParam(name = "title", required = false) String title, @RequestParam(name = "author", required = false) String author, @RequestParam(name = "isbn", required = false) String isbn, @RequestParam("type") String type) {
     return bookService.pageInfoExist(pageNum, pageSize, title, author, isbn, type);
   }
+
+  @ResponseBody
+  @GetMapping("/book/{bookId}")
+  Book selectBookById(@PathVariable("bookId") Integer bookId) {
+    return bookService.selectBookById(bookId);
+  }
+
 }

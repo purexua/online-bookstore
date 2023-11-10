@@ -32,4 +32,6 @@ public interface BookService {
   List<Book> bookAfterPageHelpExist(int pageNum, int pageSize, String title, String author, String isbn, String type);
 
   MyPageInfo pageInfoExist(int pageNum, int pageSize, String title, String author, String isbn, String type);
+
+  Book selectBookById(Integer bookId);
 }

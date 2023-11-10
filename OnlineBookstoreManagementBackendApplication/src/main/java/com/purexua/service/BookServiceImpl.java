@@ -129,4 +129,9 @@ public class BookServiceImpl implements BookService {
     System.out.println(myPageInfo);
     return myPageInfo;
   }
+
+  @Override
+  public Book selectBookById(Integer bookId) {
+    return bookDao.selectBookById(bookId);
+  }
 }

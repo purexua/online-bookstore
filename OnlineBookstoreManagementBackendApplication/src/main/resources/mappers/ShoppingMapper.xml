@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.purexua.mapper.ShoppingMapper">
+  <select id="getShoppingCartByUserId" resultType="shoppingCart">
+    select * from shopping_cart where user_id = #{userId}
+  </select>
+  
+  <select id="getShoppingCartItemsByCartId" resultType="shoppingCartItem">
+    select * from shopping_cart_item where cart_id = #{cartId}
+  </select>
+  
+  <insert id="insertShoppingCartItem" parameterType="shoppingCartItem">
+    insert into shopping_cart_item ( cart_id , book_id , quantity) values ( #{cartId} , #{bookId} , #{quantity})
+  </insert>
+</mapper>

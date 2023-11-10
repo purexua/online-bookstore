@@ -39,6 +39,8 @@
                             v-if="user.userId === 1">Edit</el-button>
                         <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)"
                             v-if="user.userId === 1">Delete</el-button>
+                        <el-button size="mini" @click="handleBuy(scope.$index, scope.row)"
+                            v-if="user.userId !== 1">Buy</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -227,7 +229,10 @@ export default {
         },
         user() {
             return this.$store.state.userInfo.user
-        }
+        },
+        shoppingCart() {
+            return this.$store.state.shopCart.shoppingCart
+        },
     },
     components: {
         BookHead,
@@ -283,6 +288,32 @@ export default {
             });
 
 
+        },
+        handleBuy(index, row) {
+            this.$confirm('此操作将购买图书, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                console.log(row, index)
+                console.log('@@@@', this.shoppingCart.cartId)
+                const data = {
+                    bookId: row.bookId,
+                    cartId: this.shoppingCart.cartId,
+                    quantity: 1,
+                }
+                console.log(data)
+                this.$store.dispatch('shopCart/add', data)
+                this.$message({
+                    type: 'success',
+                    message: '购买图书成功'
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消购买'
+                });
+            });
         },
         handleCurrentChange(val) {
             this.$store.commit('bookInfo/SETPAGENUM', val)
@@ -370,9 +401,11 @@ export default {
                 }
             });
         },
+
     },
     mounted() {
         this.$store.dispatch('bookInfo/getBookData', this.bookType)
+        this.$store.dispatch('shopCart/getShoppingCart', this.user.userId);
     },
     watch: {
         $route(to, from) {
@@ -383,6 +416,9 @@ export default {
                 this.$store.dispatch('bookInfo/getBookData', this.bookType);
             }
         },
+        shoppingCart(newVal) {
+            this.$store.dispatch('shopCart/getShoppingCartItems', newVal.cartId);
+        }
     },
 
 }

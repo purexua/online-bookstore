@@ -72,6 +72,47 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
 ('西方哲学史', '罗素', '商务印书馆', '9787100089740', 58.00, 30, '哲学');
 ```
 
+order表
+
+```mysql
+CREATE TABLE `order` (
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `order_date` datetime NOT NULL, 
+  PRIMARY KEY (`order_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`)  
+);
+
+#数据模拟
+INSERT INTO `order` (order_id, user_id, order_date) VALUES
+(1,2,'2019-01-01'),
+(2,2,'2019-01-02'),
+(3,2,'2019-01-03'),
+(4,4,'2019-01-04'),
+(5,5,'2019-01-05'),
+(6,6,'2019-01-06'),
+(7,7,'2019-01-07'),
+(8,8,'2019-01-08'),
+(9,9,'2019-01-09'),
+(10,9,'2019-01-10' );
+```
+
+order_item表
+
+```
+CREATE TABLE `order_item` (
+  `order_item_id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `book_id` int NOT NULL,
+  PRIMARY KEY (`order_item_id`),
+  FOREIGN KEY (`order_id`) REFERENCES `order`(`order_id`),
+  FOREIGN KEY (`book_id`) REFERENCES `book`(`book_id`)
+);
+
+#数据模拟
+
+```
+
 
 
 ## 接口
@@ -401,6 +442,35 @@ INSERT INTO books (title, author, publisher, isbn, price, stock, type) VALUES
 
     ```
     success
+    ```
+
+16. `http://localhost:8080/order`
+    请求方式：`GET`
+    param参数：`userId`
+    返回结果示例：
+
+    ```
+    ---
+    http://localhost:8080/order?userId=2
+    ---
+    
+    [
+        {
+            "orderId": 1,
+            "userId": 2,
+            "orderDate": "2018-12-31T16:00:00.000+00:00"
+        },
+        {
+            "orderId": 2,
+            "userId": 2,
+            "orderDate": "2019-01-01T16:00:00.000+00:00"
+        },
+        {
+            "orderId": 3,
+            "userId": 2,
+            "orderDate": "2019-01-02T16:00:00.000+00:00"
+        }
+    ]
     ```
 
     

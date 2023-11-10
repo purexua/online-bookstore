@@ -9,6 +9,8 @@ import BookForm from '../views/index/BookForm.vue'
 import ChangePass from '../views/index/ChangePass.vue'
 import ChangeInfo from '../views/index/ChangeInfo.vue'
 import Recharge from '../views/index/Recharge.vue'
+import Order from '../views/index/Order.vue'
+import ShopCart from '../views/index/ShopCart.vue'
 
 const router = new VueRouter({
    mode: 'hash',
@@ -84,7 +86,20 @@ const router = new VueRouter({
                path: 'recharge',
                component: Recharge,
                meta: { 'title': '充值系统' }
+            },
+            {
+               name: 'order',
+               path: 'order',
+               component: Order,
+               meta: { 'title': '订单管理' }
+            },
+            {
+               name:'shopCart',
+               path:'shopCart',
+               component:ShopCart,
+               meta:{'title':'购物车'}
             }
+            
          ]
       }
    ]

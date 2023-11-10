@@ -56,6 +56,24 @@
                     </span>
                 </el-menu-item>
 
+                <el-menu-item index="3" v-if="user.userId !== 1">
+                    <i class="el-icon-document"></i>
+                    <span slot="title">
+                        <router-link :to="{
+                            name: 'order',
+                        }">我的订单</router-link>
+                    </span>
+                </el-menu-item>
+
+                <el-menu-item index="5" v-if="user.userId !== 1">
+                    <i class="el-icon-document"></i>
+                    <span slot="title">
+                        <router-link :to="{
+                            name: 'shopCart',
+                        }">我的购物车</router-link>
+                    </span>
+                </el-menu-item>
+
                 <el-submenu index="4">
                     <template slot="title">
                         <i class="el-icon-location"></i>
@@ -100,7 +118,7 @@ import Header from '../components/Header.vue'
 export default {
     name: 'Index',
     computed: {
-        user(){
+        user() {
             return this.$store.state.userInfo.user
         }
     },

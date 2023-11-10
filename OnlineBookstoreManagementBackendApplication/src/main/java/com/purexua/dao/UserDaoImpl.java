@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public class UserDaoImpl implements UserDao {
 
   @Autowired
- private UserMapper userMapper;
+  private UserMapper userMapper;
 
   @Override
   public User selectUserByUsername(String username) {
@@ -17,8 +17,8 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public Integer updateUserPass( Integer userId,String password) {
-    return userMapper.updateUserPass(userId,password);
+  public Integer updateUserPass(Integer userId, String password) {
+    return userMapper.updateUserPass(userId, password);
   }
 
   @Override

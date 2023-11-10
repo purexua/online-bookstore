@@ -33,8 +33,8 @@ export default {
     data() {
         return {
             loginForm: {
-                username: 'admin',
-                password: '123'
+                username: 'test2',
+                password: 'lisi456'
             },
             loading: false,
         }

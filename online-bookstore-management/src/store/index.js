@@ -5,6 +5,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import userInfo from './user.js'
 import bookInfo from './book.js'
+import orderInfo from './order.js'
+import shopCart from './shopcart.js'
 
 
 //应用Vuex插件
@@ -15,6 +17,8 @@ export default new Vuex.Store(
     {
         modules: {
             userInfo: userInfo,
-            bookInfo: bookInfo
+            bookInfo: bookInfo,
+            orderInfo: orderInfo,
+            shopCart:shopCart,
         }
     })
