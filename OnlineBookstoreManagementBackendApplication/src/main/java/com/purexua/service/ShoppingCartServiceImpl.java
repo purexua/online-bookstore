@@ -23,9 +23,25 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     return shoppingCartDao.getShoppingCartItemsByCartId(cartId);
   }
 
+
   @Override
-  public String insertShoppingCartItem(ShoppingCartItem shoppingCartItem) {
-    shoppingCartDao.insertShoppingCartItem(shoppingCartItem);
-    return "success";
+  public String updateShoppingCartItem(ShoppingCartItem shoppingCartItem) {
+    ShoppingCartItem shoppingCartItem1 = shoppingCartDao.selectShoppingCartItemByCartIdAndBookId(shoppingCartItem.getCartId(), shoppingCartItem.getBookId());
+    if (shoppingCartItem1 == null) {
+      shoppingCartDao.insertShoppingCartItem(shoppingCartItem);
+      System.out.println("insert " + shoppingCartItem);
+      return "insert";
+    } else {
+      shoppingCartItem1.setQuantity(shoppingCartItem1.getQuantity() + shoppingCartItem.getQuantity());
+      shoppingCartDao.updateShoppingCartItem(shoppingCartItem1);
+      System.out.println("update " + shoppingCartItem1);
+      return "update";
+    }
+  }
+
+  @Override
+  public String deleteShoppingCartItemById(Integer itemId) {
+    shoppingCartDao.deleteShoppingCartItemById(itemId);
+    return "delete";
   }
 }

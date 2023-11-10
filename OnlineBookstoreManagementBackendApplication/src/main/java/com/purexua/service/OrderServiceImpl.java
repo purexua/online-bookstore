@@ -50,4 +50,14 @@ public class OrderServiceImpl implements OrderService {
     System.out.println("查询 " + orderId + " 号订单的订单项信息");
     return orderDao.selectOrderItemsByOrderId(orderId);
   }
+
+  @Override
+  public void insertOrder(Order order) {
+    orderDao.insertOrder(order);
+  }
+
+  @Override
+  public void insertOrderItem(OrderItem orderItem) {
+    orderDao.insertOrderItem(orderItem);
+  }
 }

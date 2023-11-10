@@ -9,18 +9,20 @@
       </el-table-column>
       <el-table-column prop="bookId" label="书籍编号" width="180">
       </el-table-column>
-      <el-table-column prop="cartId" label="购物车编号" width="180">        
-      </el-table-column>     
-      <el-table-column prop="quantity" label="数量" width="180">   
+      <el-table-column prop="cartId" label="购物车编号" width="180">
+      </el-table-column>
+      <el-table-column prop="quantity" label="数量" width="180">
       </el-table-column>
     </el-table>
     <div style="margin-top: 20px">
       <el-button @click="toggleSelection()">取消选择</el-button>
+      <el-button @click="pay()">支付</el-button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'ShopCart',
   data() {
@@ -37,20 +39,50 @@ export default {
     },
     shoppingCartItems() {
       return this.$store.state.shopCart.shoppingCartItems
+    },
+    insertOrderId() {
+      return this.$store.state.orderInfo.insertOrderId
     }
   },
   methods: {
     handleSelectionChange(val) {
-      console.log(val);
       this.multipleSelection = val;
     },
     toggleSelection() {
       this.$refs.multipleTable.clearSelection();
     },
+    async pay() {
+      console.log('userId=', this.user.userId);
+      await this.$store.dispatch('orderInfo/insertOrder', this.user.userId);
+      console.log('orderId=', this.insertOrderId);
+
+      for (let i = 0; i < this.multipleSelection.length; i++) {
+        await this.$store.dispatch('orderInfo/insertOrderItem', {
+          orderId: this.insertOrderId,
+          bookId: this.multipleSelection[i].bookId,
+        });
+
+        await this.$store.dispatch('bookInfo/getBookById', this.multipleSelection[i].bookId);
+
+        const money = this.$store.state.bookInfo.bookById.price * this.multipleSelection[i].quantity;
+        console.log('money=', money);
+
+        this.$store.dispatch('userInfo/pay', {
+          userId: this.user.userId,
+          money: money
+        });
+
+        await this.$store.dispatch('shopCart/delete', {
+          cartId: this.shoppingCart.cartId,
+          itemId: this.multipleSelection[i].itemId
+        });
+      }
+    }
+
   },
   mounted() {
     this.$store.dispatch('shopCart/getShoppingCart', this.user.userId);
-
+    this.$store.dispatch('orderInfo/insertOrder', this.user.userId);
   },
   watch: {
     shoppingCart(newVal) {

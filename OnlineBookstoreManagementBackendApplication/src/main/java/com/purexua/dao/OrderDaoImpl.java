@@ -36,4 +36,14 @@ public class OrderDaoImpl implements OrderDao {
   public List<OrderItem> selectOrderItemsByOrderId(Integer orderId) {
     return orderMapper.selectOrderItemsByOrderId(orderId);
   }
+
+  @Override
+  public void insertOrder(Order order) {
+    orderMapper.insertOrder(order);
+  }
+
+  @Override
+  public void insertOrderItem(OrderItem orderItem) {
+    orderMapper.insertOrderItem(orderItem);
+  }
 }

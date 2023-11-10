@@ -111,6 +111,9 @@ export default {
                 message: '支付成功!'
             });
         }
+    },
+    mounted() {
+        this.$store.dispatch('userInfo/updateUser', this.$store.state.userInfo.user.userId);
     }
 }
 </script>

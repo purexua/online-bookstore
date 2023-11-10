@@ -38,4 +38,16 @@ public class UserController {
   public String updateUserBalance(@RequestParam("userId") Integer userId, @RequestParam("balance") Double balance) {
     return userService.updateUserBalance(userId, balance);
   }
+
+  @ResponseBody
+  @PutMapping("/user/pay")
+  public String updateUserBalanceAfterPay(@RequestParam("userId") Integer userId, @RequestParam("balance") Double balance) {
+    return userService.updateUserBalanceAfterPay(userId, balance);
+  }
+
+  @ResponseBody
+  @GetMapping("/user/id")
+  public User getUserById(@RequestParam("userId") Integer userId) {
+    return userService.getUserById(userId);
+  }
 }

@@ -15,4 +15,18 @@
   <insert id="insertShoppingCartItem" parameterType="shoppingCartItem">
     insert into shopping_cart_item ( cart_id , book_id , quantity) values ( #{cartId} , #{bookId} , #{quantity})
   </insert>
+  
+  <select id="selectShoppingCartItemByCartIdAndBookId" resultType="shoppingCartItem">
+    select * from shopping_cart_item
+    where cart_id = #{cartId} and book_id = #{bookId}
+  </select>
+  <update id="updateShoppingCartItem" parameterType="shoppingCartItem">
+    update shopping_cart_item
+    set quantity = #{quantity}
+    where cart_id = #{cartId} and book_id = #{bookId}
+  </update>
+  
+  <delete id="deleteShoppingCartItemById" parameterType="int">
+  delete from shopping_cart_item where item_id = #{itemId}
+  </delete>
 </mapper>

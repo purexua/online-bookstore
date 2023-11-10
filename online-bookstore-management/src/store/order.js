@@ -62,6 +62,33 @@ export default {
                     console.error(error);
                 });
         },
+        insertOrder(context, userId) {
+            axios({
+                method: 'post',
+                url: 'http://localhost:3919/serve8080/order',
+                params: {
+                    userId: userId,
+                }
+            }).then(response => {
+                context.commit('INSERTORDERID', response.data);
+            }).catch(error => {
+                console.error(error);
+            });
+        },
+        insertOrderItem(context, data) {
+            axios({
+                method: 'post',
+                url: 'http://localhost:3919/serve8080/order/item',
+                params: {
+                    orderId: data.orderId,
+                    bookId: data.bookId,
+                }
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error(error);
+            });
+        },
     },
     mutations: {
         GETORDERDATA(state, data) {
@@ -76,7 +103,10 @@ export default {
         },
         GETORDERITEMBYID(state, data) {
             state.orderItemById = data;
-        }
+        },
+        INSERTORDERID(state, data) {
+            state.insertOrderId = data;
+        },
     },
     state: {
         order: [],
@@ -88,6 +118,7 @@ export default {
             pageSize: 9,
         },
         orderItemById: [],
+        insertOrderId: 0,
     },
     getters: {},
 };

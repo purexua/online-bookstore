@@ -29,4 +29,19 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
   public void insertShoppingCartItem(ShoppingCartItem shoppingCartItem) {
     shoppingMapper.insertShoppingCartItem(shoppingCartItem);
   }
+
+  @Override
+  public ShoppingCartItem selectShoppingCartItemByCartIdAndBookId(Integer cartId, Integer bookId) {
+    return shoppingMapper.selectShoppingCartItemByCartIdAndBookId(cartId, bookId);
+  }
+
+  @Override
+  public void updateShoppingCartItem(ShoppingCartItem shoppingCartItem) {
+    shoppingMapper.updateShoppingCartItem(shoppingCartItem);
+  }
+
+  @Override
+  public void deleteShoppingCartItemById(Integer itemId) {
+    shoppingMapper.deleteShoppingCartItemById(itemId);
+  }
 }

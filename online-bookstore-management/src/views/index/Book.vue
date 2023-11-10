@@ -35,11 +35,11 @@
                 </el-table-column>
                 <el-table-column align="right" label="操作">
                     <template slot-scope="scope">
-                        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+                        <el-button type="warning" size="mini" @click="handleEdit(scope.$index, scope.row)"
                             v-if="user.userId === 1">Edit</el-button>
                         <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)"
                             v-if="user.userId === 1">Delete</el-button>
-                        <el-button size="mini" @click="handleBuy(scope.$index, scope.row)"
+                        <el-button type="info" size="mini" @click="handleBuy(scope.$index, scope.row)"
                             v-if="user.userId !== 1">Buy</el-button>
                     </template>
                 </el-table-column>

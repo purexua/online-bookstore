@@ -12,4 +12,8 @@ public interface UserService {
   String updateUser(User user);
 
   String updateUserBalance(Integer userId, Double balance);
+
+  String updateUserBalanceAfterPay(Integer userId, Double balance);
+
+  User getUserById(Integer userId);
 }

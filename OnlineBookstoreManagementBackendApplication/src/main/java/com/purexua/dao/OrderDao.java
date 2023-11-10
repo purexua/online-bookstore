@@ -14,4 +14,8 @@ public interface OrderDao {
   Order selectOrderByUserIdAndOrderId(Integer userId, Integer orderId);
 
   List<OrderItem> selectOrderItemsByOrderId(Integer orderId);
+
+  void insertOrder(Order order);
+
+  void insertOrderItem(OrderItem orderItem);
 }

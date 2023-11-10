@@ -36,4 +36,16 @@ public class UserServiceImpl implements UserService{
     System.out.println("用户 ID "+userId+" update balance + "+balance);
     return "success";
   }
+
+  @Override
+  public String updateUserBalanceAfterPay(Integer userId, Double balance) {
+    userDao.updateUserBalanceAfterPay(userId, balance);
+    System.out.println("用户 ID "+userId+" update balance - "+balance);
+    return "success";
+  }
+
+  @Override
+  public User getUserById(Integer userId) {
+    return userDao.getUserById(userId);
+  }
 }

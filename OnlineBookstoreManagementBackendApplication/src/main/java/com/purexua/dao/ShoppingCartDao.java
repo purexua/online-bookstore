@@ -11,4 +11,10 @@ public interface ShoppingCartDao {
   public List<ShoppingCartItem> getShoppingCartItemsByCartId(int cartId);
 
   public void insertShoppingCartItem(ShoppingCartItem shoppingCartItem);
+
+  public ShoppingCartItem selectShoppingCartItemByCartIdAndBookId(Integer cartId, Integer bookId);
+
+  public void updateShoppingCartItem(ShoppingCartItem shoppingCartItem);
+
+  void deleteShoppingCartItemById(Integer itemId);
 }

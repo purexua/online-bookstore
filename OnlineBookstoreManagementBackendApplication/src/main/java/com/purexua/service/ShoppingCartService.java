@@ -10,5 +10,7 @@ public interface ShoppingCartService {
 
   public List<ShoppingCartItem> getShoppingCartItemsByCartId(int cartId);
 
-  public String insertShoppingCartItem(ShoppingCartItem shoppingCartItem);
+  public String updateShoppingCartItem(ShoppingCartItem shoppingCartItem);
+
+  public String deleteShoppingCartItemById(Integer itemId);
 }

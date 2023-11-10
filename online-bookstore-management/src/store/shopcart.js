@@ -44,6 +44,19 @@ export default {
                 console.error(error);
             })
         },
+        delete(context, data) {
+            axios({
+                method: 'delete',
+                url: 'http://localhost:3919/serve8080/shopping/cart/item/delete',
+                params: {
+                    itemId: data.itemId,
+                }
+            }).then((response) => {
+                context.dispatch('getShoppingCartItems', data.cartId);            
+            }).catch((error) => {
+                console.error(error);
+            })
+        }
     },
     mutations: {
         GETSHOPPINGCART(state, data) {

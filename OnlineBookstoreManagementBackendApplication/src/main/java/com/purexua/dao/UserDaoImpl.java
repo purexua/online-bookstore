@@ -30,4 +30,14 @@ public class UserDaoImpl implements UserDao {
   public Integer updateUserBalance(Integer userId, Double balance) {
     return userMapper.updateUserBalance(userId, balance);
   }
+
+  @Override
+  public Integer updateUserBalanceAfterPay(Integer userId, Double balance) {
+    return userMapper.updateUserBalanceAfterPay(userId, balance);
+  }
+
+  @Override
+  public User getUserById(Integer userId) {
+    return userMapper.getUserById(userId);
+  }
 }

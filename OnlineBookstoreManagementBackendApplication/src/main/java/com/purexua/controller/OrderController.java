@@ -7,9 +7,12 @@ import com.purexua.tool.MyPageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -46,5 +49,27 @@ public class OrderController {
   @GetMapping("/order/item/id")
   public List<OrderItem> selectOrderItemsByOrderId(@RequestParam("orderId") Integer orderId) {
     return orderService.selectOrderItemsByOrderId(orderId);
+  }
+
+  @ResponseBody
+  @PostMapping("/order")
+  public int insertOrder(Integer userId) {
+    Order order = new Order();
+    order.setUserId(userId);
+    order.setOrderDate(new Timestamp(System.currentTimeMillis())); // 使用Timestamp表示当前时间
+    System.out.println("order = " + order);
+    orderService.insertOrder(order);
+    return order.getOrderId();
+  }
+
+  @ResponseBody
+  @PostMapping("/order/item")
+  public String insertOrderItem(Integer orderId, Integer bookId) {
+    OrderItem orderItem = new OrderItem();
+    orderItem.setOrderId(orderId);
+    orderItem.setBookId(bookId);
+    orderService.insertOrderItem(orderItem);
+    System.out.println("添加 orderItem = " + orderItem);
+    return "success";
   }
 }

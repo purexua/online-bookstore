@@ -28,4 +28,15 @@
     set balance = #{balance} + balance
     where user_id = #{userId}
   </update>
+  
+  <update id="updateUserBalanceAfterPay">
+    update user
+    set balance = balance - #{balance}
+    where user_id = #{userId}
+  </update>
+  
+  <select id="getUserById" resultType="user">
+    select * from user
+    where user_id = #{userId}
+  </select>
 </mapper>
