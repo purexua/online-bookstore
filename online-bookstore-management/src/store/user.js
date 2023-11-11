@@ -12,7 +12,7 @@ export default {
 					balance: data.money,
 				}
 			}).then((response) => {
-				context.commit('CHANGEBALANCE', data.money)
+				context.commit('PAY', data.money)
 			}).catch((error) => {
 				console.error(error);
 			})

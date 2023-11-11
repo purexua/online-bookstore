@@ -43,6 +43,9 @@ export default {
     },
     insertOrderId() {
       return this.$store.state.orderInfo.insertOrderId
+    },
+    bookById() {
+      return this.$store.state.bookInfo.bookById
     }
   },
   methods: {
@@ -60,12 +63,26 @@ export default {
       console.log('orderId=', orderId);
 
     },
-    pay() {
+    async pay() {
       console.log('userId=', this.user.userId);
       this.$store.dispatch('orderInfo/insertOrder', {
         userId: this.user.userId,
         multipleSelection: this.multipleSelection,
       });
+
+      for (let i = 0; i < this.multipleSelection.length; i++) {
+        await this.$store.dispatch('bookInfo/getBookById', this.multipleSelection[i].bookId);
+        const money = this.$store.state.bookInfo.bookById.price * this.multipleSelection[i].quantity;
+        console.log('money=', money);
+        this.$store.dispatch('userInfo/pay', {
+          userId: this.user.userId,
+          money: money
+        });
+        await this.$store.dispatch('shopCart/delete', {
+          cartId: this.shoppingCart.cartId,
+          itemId: this.multipleSelection[i].itemId
+        });
+      }
     },
   },
   mounted() {
