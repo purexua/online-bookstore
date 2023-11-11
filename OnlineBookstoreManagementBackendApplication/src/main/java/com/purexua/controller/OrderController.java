@@ -53,21 +53,25 @@ public class OrderController {
 
   @ResponseBody
   @PostMapping("/order")
-  public int insertOrder(Integer userId) {
+  public int insertOrder( @RequestParam("userId") Integer userId) {
     Order order = new Order();
     order.setUserId(userId);
     order.setOrderDate(new Timestamp(System.currentTimeMillis())); // 使用Timestamp表示当前时间
     System.out.println("order = " + order);
     orderService.insertOrder(order);
+
+
+    System.out.println("添加 order = " + order+" order.getOrderId() = " + order.getOrderId());
     return order.getOrderId();
   }
 
   @ResponseBody
   @PostMapping("/order/item")
-  public String insertOrderItem(Integer orderId, Integer bookId) {
+  public String insertOrderItem(Integer orderId, Integer bookId, Integer quantity) {
     OrderItem orderItem = new OrderItem();
     orderItem.setOrderId(orderId);
     orderItem.setBookId(bookId);
+    orderItem.setQuantity(quantity);
     orderService.insertOrderItem(orderItem);
     System.out.println("添加 orderItem = " + orderItem);
     return "success";

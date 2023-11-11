@@ -62,15 +62,28 @@ export default {
                     console.error(error);
                 });
         },
-        insertOrder(context, userId) {
+        insertOrder(context, data) {
             axios({
                 method: 'post',
                 url: 'http://localhost:3919/serve8080/order',
-                params: {
-                    userId: userId,
+                params: {  // 使用 'data' 替代 'params' 用于 POST 请求
+                    userId: data.userId,
                 }
             }).then(response => {
+                console.log('orderID=', response.data);
                 context.commit('INSERTORDERID', response.data);
+                console.log('context.state.insertOrderId orderID=', context.state.insertOrderId);
+
+                for (let i = 0; i < data.multipleSelection.length; i++) {
+                    const orderItem = {
+                        orderId: context.state.insertOrderId,
+                        bookId: data.multipleSelection[i].bookId,
+                        quantity: data.multipleSelection[i].quantity
+                    };
+                    // 插入订单项
+                    context.dispatch('insertOrderItem', orderItem);
+                }
+
             }).catch(error => {
                 console.error(error);
             });
@@ -82,6 +95,7 @@ export default {
                 params: {
                     orderId: data.orderId,
                     bookId: data.bookId,
+                    quantity: data.quantity,
                 }
             }).then(response => {
                 console.log(response.data);

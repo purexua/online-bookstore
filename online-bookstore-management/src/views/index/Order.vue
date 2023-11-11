@@ -31,6 +31,7 @@
                 <el-table-column property="orderItemId" label="订单项 ID" width="150"></el-table-column>
                 <el-table-column property="orderId" label="订单 ID" width="200"></el-table-column>
                 <el-table-column property="bookId" label="图书 ID"></el-table-column>
+                <el-table-column property="quantity" label="图书数量"></el-table-column>
                 <el-table-column fixed="right" label="操作" width="100">
                 <template slot-scope="scope">
                     <el-button @click="handleClick2(scope.row)" type="text" size="small">详细图书信息</el-button>

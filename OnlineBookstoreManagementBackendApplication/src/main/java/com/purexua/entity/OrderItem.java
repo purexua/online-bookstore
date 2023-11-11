@@ -7,4 +7,5 @@ public class OrderItem {
   Integer orderItemId;
   Integer orderId;
   Integer bookId;
+  Integer quantity;
 }

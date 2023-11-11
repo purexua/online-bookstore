@@ -23,6 +23,7 @@
 
 <script>
 import axios from 'axios'
+import order from '@/store/order'
 export default {
   name: 'ShopCart',
   data() {
@@ -51,38 +52,25 @@ export default {
     toggleSelection() {
       this.$refs.multipleTable.clearSelection();
     },
-    async pay() {
+    async shengcheng() {
+
+
+      const orderId = this.$store.state.orderInfo.insertOrderId;
+
+      console.log('orderId=', orderId);
+
+    },
+    pay() {
       console.log('userId=', this.user.userId);
-      await this.$store.dispatch('orderInfo/insertOrder', this.user.userId);
-      console.log('orderId=', this.insertOrderId);
-
-      for (let i = 0; i < this.multipleSelection.length; i++) {
-        await this.$store.dispatch('orderInfo/insertOrderItem', {
-          orderId: this.insertOrderId,
-          bookId: this.multipleSelection[i].bookId,
-        });
-
-        await this.$store.dispatch('bookInfo/getBookById', this.multipleSelection[i].bookId);
-
-        const money = this.$store.state.bookInfo.bookById.price * this.multipleSelection[i].quantity;
-        console.log('money=', money);
-
-        this.$store.dispatch('userInfo/pay', {
-          userId: this.user.userId,
-          money: money
-        });
-
-        await this.$store.dispatch('shopCart/delete', {
-          cartId: this.shoppingCart.cartId,
-          itemId: this.multipleSelection[i].itemId
-        });
-      }
-    }
-
+      this.$store.dispatch('orderInfo/insertOrder', {
+        userId: this.user.userId,
+        multipleSelection: this.multipleSelection,
+      });
+    },
   },
   mounted() {
     this.$store.dispatch('shopCart/getShoppingCart', this.user.userId);
-    this.$store.dispatch('orderInfo/insertOrder', this.user.userId);
+    // this.$store.dispatch('orderInfo/insertOrder', this.user.userId);
   },
   watch: {
     shoppingCart(newVal) {
@@ -90,6 +78,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style></style>
