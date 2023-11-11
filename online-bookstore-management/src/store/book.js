@@ -68,6 +68,21 @@ export default {
 				console.error(error);
 			}
 		},
+		updateBookAfterPay(context, data) {
+			//data = { bookId, bookNum }
+			axios({
+				method: 'put',
+				url: 'http://localhost:3919/serve8080/book/update/after/user/pay',
+				params: {
+					bookId: data.bookId,
+					quantity: data.quantity,
+				}
+			}).then((response) => {
+				console.log(response);
+			}).catch((error) => {
+				console.error(error);
+			})
+		},
 	},
 	mutations: {
 		GETBOOKDATA(state, data) {

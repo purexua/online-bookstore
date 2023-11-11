@@ -34,4 +34,6 @@ public interface BookService {
   MyPageInfo pageInfoExist(int pageNum, int pageSize, String title, String author, String isbn, String type);
 
   Book selectBookById(Integer bookId);
+
+  String updateBookAfterUserPay(Integer bookId, Integer quantity);
 }

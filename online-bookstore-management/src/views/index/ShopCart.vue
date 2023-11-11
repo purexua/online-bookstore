@@ -82,6 +82,11 @@ export default {
           cartId: this.shoppingCart.cartId,
           itemId: this.multipleSelection[i].itemId
         });
+
+        this.$store.dispatch('bookInfo/updateBookAfterPay', {
+          bookId: this.multipleSelection[i].bookId,
+          quantity: this.multipleSelection[i].quantity
+        });
       }
     },
   },

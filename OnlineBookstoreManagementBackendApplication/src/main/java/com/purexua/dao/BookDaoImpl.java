@@ -74,4 +74,9 @@ public class BookDaoImpl implements BookDao {
     List<Book> books = bookMapper.selectBooksByTitleAuthorIsbnType(title, author, isbn, type);
     return new PageInfo<>(books);
   }
+
+  @Override
+  public int updateBookAfterUserPay(Integer bookId, Integer quantity) {
+    return bookMapper.updateBookAfterUserPay(bookId, quantity);
+  }
 }

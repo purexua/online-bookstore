@@ -27,4 +27,6 @@ public interface BookDao {
   List<Book> selectBooksByTitleAuthorIsbnType(String title, String author, String isbn, String type);
 
   PageInfo<Book> getPageHelpExist(int pageNum, int pageSize, String title, String author, String isbn, String type);
+
+  int updateBookAfterUserPay(Integer bookId, Integer quantity);
 }

@@ -134,4 +134,11 @@ public class BookServiceImpl implements BookService {
   public Book selectBookById(Integer bookId) {
     return bookDao.selectBookById(bookId);
   }
+
+  @Override
+  public String updateBookAfterUserPay(Integer bookId, Integer quantity) {
+    bookDao.updateBookAfterUserPay(bookId, quantity);
+    System.out.println("更新图书" + bookId + "减少数量" + quantity);
+    return "success";
+  }
 }

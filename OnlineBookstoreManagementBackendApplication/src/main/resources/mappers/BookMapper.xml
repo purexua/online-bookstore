@@ -56,4 +56,10 @@
       </if>
     </where>
   </select>
+  
+  <update id="updateBookAfterUserPay" >
+    update book
+    set stock = stock - #{quantity}
+    where book_id = #{bookId}
+  </update>
 </mapper>

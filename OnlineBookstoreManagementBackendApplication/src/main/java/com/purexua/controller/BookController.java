@@ -89,4 +89,9 @@ public class BookController {
     return bookService.selectBookById(bookId);
   }
 
+  @ResponseBody
+  @PutMapping("/book/update/after/user/pay")
+  String updateBookAfterUserPay(@RequestParam("bookId") Integer bookId, @RequestParam("quantity") Integer quantity) {
+    return bookService.updateBookAfterUserPay(bookId, quantity);
+  }
 }

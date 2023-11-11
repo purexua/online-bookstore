@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface BookMapper {
   List<Book> selectBooksByType(String type);
+
   List<Book> getAllBooks();
 
   int addBook(Book book);
@@ -19,4 +20,6 @@ public interface BookMapper {
   int deleteBookById(Integer bookId);
 
   List<Book> selectBooksByTitleAuthorIsbnType(String title, String author, String isbn, String type);
+
+  int updateBookAfterUserPay(Integer bookId, Integer quantity);
 }
