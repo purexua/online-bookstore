@@ -92,7 +92,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('shopCart/getShoppingCart', this.user.userId);
-    // this.$store.dispatch('orderInfo/insertOrder', this.user.userId);
   },
   watch: {
     shoppingCart(newVal) {
