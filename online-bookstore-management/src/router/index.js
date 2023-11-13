@@ -19,7 +19,7 @@ const router = new VueRouter({
          name: 'login',
          path: '/login',
          component: Login,
-         meta: { 'title': '登录' }
+         meta: { 'title': '登录'}
       },
       {
          name: 'index',
