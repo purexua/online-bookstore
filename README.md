@@ -1,6 +1,6 @@
 # 网上书店购物系统 - Online Bookstore
 
-![](F:\git\github\Database-course-design\images\hello.jpg)
+![](./images/hello.jpg)
 
 ## 简介
 
@@ -32,7 +32,7 @@
 
 ### ER图
 
-![](F:\git\github\Database-course-design\images\er.jpg)
+![](./images/er.jpg)
 
 ### 数据库表
 
