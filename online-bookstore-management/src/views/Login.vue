@@ -18,6 +18,10 @@
                         <el-button :loading="loading" class="login_btn" type="primary" size="default"
                             @click="login">登录</el-button>
                     </el-form-item>
+                    <el-form-item>
+                        <el-button :loading="loading" class="login_btn" type="info" size="default"
+                            @click="register">注册</el-button>
+                    </el-form-item>
                 </el-form>
             </el-col>
         </el-row>
@@ -48,12 +52,14 @@ export default {
                 this.loading = true
                 if (res.data === '') {
                     this.$message({
-                        message: '用户名不存在',
+                        message: '用户名不存在-请先注册',
                         type: 'error'
                     })
                 } else {
                     if (res.data.password === this.loginForm.password) {
+                        // 保存用户信息到 vuex 的 user
                         this.$store.commit('userInfo/SAVEUSER', res.data)
+                        localStorage.setItem('isLogin', true)
                         this.$router.push('/home')
                     } else {
                         this.$message({
@@ -61,18 +67,21 @@ export default {
                             type: 'error'
                         })
                     }
-                }
+                }   
             }).catch(err => {
                 console.log(err)
             }).finally(() => {
                 this.loading = false
             })
         },
+        register() {
+            this.$router.push('/register')
+        }
     }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login_container {
     width: 100%;
     height: 100vh;

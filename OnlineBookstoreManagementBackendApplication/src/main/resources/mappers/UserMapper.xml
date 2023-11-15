@@ -39,4 +39,9 @@
     select * from user
     where user_id = #{userId}
   </select>
+  
+  <insert id="register" useGeneratedKeys="true" keyProperty="userId">
+    insert into user(user_name, password, real_name, email, address, phone_number, balance)
+    values(#{userName}, #{password}, #{realName}, #{email}, #{address}, #{phoneNumber}, #{balance})
+  </insert>
 </mapper>

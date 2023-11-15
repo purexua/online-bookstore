@@ -5,7 +5,7 @@ import com.purexua.entity.User;
 public interface UserDao {
   User selectUserByUsername(String username);
 
-  Integer updateUserPass(Integer userId, String password);
+  void updateUserPass(Integer userId, String password);
 
   Integer updateUser(User user);
 
@@ -14,4 +14,6 @@ public interface UserDao {
   Integer updateUserBalanceAfterPay(Integer userId, Double balance);
 
   User getUserById(Integer userId);
+
+  void register(User user);
 }

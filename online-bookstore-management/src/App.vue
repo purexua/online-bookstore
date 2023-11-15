@@ -11,9 +11,13 @@ export default {
   components: {
   },
   mounted() {
+    localStorage.setItem('isLogin', false)
     this.$router.push('/login')
+  },
+  befordDestroy() {
+    localStorage.removeItem('isLogin')
   }
-}
+} 
 </script>
 
 <style>

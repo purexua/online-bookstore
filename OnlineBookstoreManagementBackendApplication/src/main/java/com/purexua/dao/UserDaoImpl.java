@@ -17,8 +17,8 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public Integer updateUserPass(Integer userId, String password) {
-    return userMapper.updateUserPass(userId, password);
+  public void updateUserPass(Integer userId, String password) {
+    userMapper.updateUserPass(userId, password);
   }
 
   @Override
@@ -39,5 +39,10 @@ public class UserDaoImpl implements UserDao {
   @Override
   public User getUserById(Integer userId) {
     return userMapper.getUserById(userId);
+  }
+
+  @Override
+  public void register(User user) {
+    userMapper.register(user);
   }
 }

@@ -13,4 +13,6 @@ public interface UserMapper {
   Integer updateUserBalanceAfterPay(Integer userId, Double balance);
 
   User getUserById(Integer userId);
+
+  void register(User user);
 }

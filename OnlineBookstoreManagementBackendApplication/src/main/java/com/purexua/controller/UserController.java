@@ -4,10 +4,7 @@ import com.purexua.entity.User;
 import com.purexua.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -23,8 +20,8 @@ public class UserController {
 
   @ResponseBody
   @PutMapping("/user/password")
-  public String updatePassword( @RequestParam("userId") Integer userId,@RequestParam("password") String password) {
-    return userService.updatePassword(userId,password);
+  public String updatePassword(@RequestParam("userId") Integer userId, @RequestParam("password") String password) {
+    return userService.updatePassword(userId, password);
   }
 
   @ResponseBody
@@ -49,5 +46,11 @@ public class UserController {
   @GetMapping("/user/id")
   public User getUserById(@RequestParam("userId") Integer userId) {
     return userService.getUserById(userId);
+  }
+
+  @ResponseBody
+  @PostMapping("/register")
+  public String register(User user) {
+    return userService.register(user);
   }
 }

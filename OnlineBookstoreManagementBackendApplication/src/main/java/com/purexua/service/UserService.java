@@ -16,4 +16,6 @@ public interface UserService {
   String updateUserBalanceAfterPay(Integer userId, Double balance);
 
   User getUserById(Integer userId);
+
+  String register(User user);
 }
