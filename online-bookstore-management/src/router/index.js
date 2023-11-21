@@ -11,7 +11,6 @@ import ChangeInfo from '../views/index/ChangeInfo.vue'
 import Recharge from '../views/index/Recharge.vue'
 import Order from '../views/index/Order.vue'
 import ShopCart from '../views/index/ShopCart.vue'
-import Signup from '../views/Signup.vue'
 
 const router = new VueRouter({
    mode: 'hash',
@@ -21,12 +20,6 @@ const router = new VueRouter({
          path: '/login',
          component: Login,
          meta: { 'title': '登录', isAuth: false }
-      },
-      {
-            name: 'register',
-            path: '/register',
-            component: Signup,
-            meta: { 'title': '注册', isAuth: false }
       },
       {
          name: 'index',
@@ -115,17 +108,7 @@ const router = new VueRouter({
 
 //全局前置路由守卫————初始化的时候被调用、每次路由切换之前被调用
 router.beforeEach((to, from, next) => {
-   console.log('beforeEach', to, from)
-   if (to.meta.isAuth) {
-      if (localStorage.getItem('isLogin')) {
-         next()
-      }
-      else {
-         alert('请先登录')
-      }
-   }else{
-      next()
-   }
+   next()
 })
 
 //全局后置路由守卫————初始化的时候被调用、每次路由切换之后被调用

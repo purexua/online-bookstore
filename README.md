@@ -1,6 +1,6 @@
 # 网上书店购物系统 - Online Bookstore
 
-![](./images/hello.jpg)
+<img src="./images/hello.jpg"  />
 
 ## 简介
 
@@ -16,9 +16,7 @@
 
 感谢您选择我们的网上书店购物系统，让阅读变得更有趣、更有深度！
 
-## 入门篇
-
-### 环境准备
+## 环境准备
 
 - Spring boot (Spring + Spring MVC )
 - Maven
@@ -30,150 +28,101 @@
 
 ## 数据库
 
-### ER图
+### 用户表（User）
 
-![](./images/er.jpg)
+|    Field     | Explain  |      Type      | Null | Key  | Default |     Extra      |
+| :----------: | :------: | :------------: | :--: | :--: | :-----: | :------------: |
+|   user_id    |  用户ID  |      INT       |  NO  | PRI  |  NULL   | AUTO_INCREMENT |
+|  user_name   |  用户名  |  VARCHAR(255)  |  NO  |      |  NULL   |                |
+|   password   |   密码   |  VARCHAR(255)  |  NO  |      |  NULL   |                |
+|  real_name   | 真实姓名 |  VARCHAR(255)  |  NO  |      |  NULL   |                |
+|    email     | 电子邮件 |  VARCHAR(100)  | YES  |      |  NULL   |                |
+|   address    |   地址   |  VARCHAR(255)  | YES  |      |  NULL   |                |
+| phone_number | 电话号码 |  VARCHAR(20)   | YES  |      |  NULL   |                |
+|   balance    |   余额   | DECIMAL(10, 2) |  NO  |      |  NULL   |                |
 
-### 数据库表
+### 书籍表（Book）
 
-user 表
+|   Field   | Explain |      Type      | Null | Key  | Default |     Extra      |
+| :-------: | :-----: | :------------: | :--: | :--: | :-----: | :------------: |
+|  book_id  | 书籍ID  |      INT       |  NO  | PRI  |  NULL   | AUTO_INCREMENT |
+|   title   |  标题   |  VARCHAR(255)  |  NO  |      |  NULL   |                |
+|  author   |  作者   |  VARCHAR(255)  |  NO  |      |  NULL   |                |
+| publisher | 出版社  |  VARCHAR(255)  |  NO  |      |  NULL   |                |
+|   isbn    | ISBN号  |  VARCHAR(13)   |  NO  |      |  NULL   |                |
+|   price   |  价格   | DECIMAL(10, 2) |  NO  |      |  NULL   |                |
+|   stock   | 库存量  |      INT       |  NO  |      |  NULL   |                |
+|   type    |  类型   |  VARCHAR(50)   |  NO  |      |  NULL   |                |
 
-```mysql
-CREATE TABLE user
-(
-    user_id      INT AUTO_INCREMENT PRIMARY KEY,
-    user_name    VARCHAR(255) NOT NULL,
-    password     VARCHAR(255) NOT NULL,
-    real_name    VARCHAR(255) NOT NULL,
-    email        VARCHAR(100),
-    address      VARCHAR(255),
-    phone_number VARCHAR(20),
-    balance DECIMAL(10, 2) NOT NULL
-);
-```
+### 订单表（Order）
 
-book 表
+|    Field    | Explain  |     Type      | Null | Key  | Default |     Extra      |
+| :---------: | :------: | :-----------: | :--: | :--: | :-----: | :------------: |
+|  order_id   |  订单ID  |      INT      |  NO  | PRI  |  NULL   | AUTO_INCREMENT |
+|   user_id   |  用户ID  |      INT      |  NO  | MUL  |  NULL   |                |
+| order_date  | 订单日期 |   DATETIME    |  NO  |      |  NULL   |                |
+| FOREIGN KEY | 用户外键 | user(user_id) |      |      |         |                |
 
-```mysql
-CREATE TABLE book (
-   book_id INT AUTO_INCREMENT PRIMARY KEY,
-   title VARCHAR(255) NOT NULL,
-   author VARCHAR(255) NOT NULL,
-   publisher VARCHAR(255) NOT NULL,
-   isbn VARCHAR(13) NOT NULL,
-   price DECIMAL(10, 2) NOT NULL,
-   stock INT NOT NULL,
-   type VARCHAR(50) NOT NULL
-);
-```
+#### 订单详情表（Order_Item）
 
-order表
+|     Field     |  Explain   |      Type       | Null | Key  | Default |     Extra      |
+| :-----------: | :--------: | :-------------: | :--: | :--: | :-----: | :------------: |
+| order_item_id | 订单详情ID |       INT       |  NO  | PRI  |  NULL   | AUTO_INCREMENT |
+|   order_id    |   订单ID   |       INT       |  NO  | MUL  |  NULL   |                |
+|    book_id    |   书籍ID   |       INT       |  NO  | MUL  |  NULL   |                |
+|   quantity    |    数量    |       INT       | YES  |      |  NULL   |                |
+|  FOREIGN KEY  |  订单外键  | order(order_id) |      |      |         |                |
+|  FOREIGN KEY  |  书籍外键  |  book(book_id)  |      |      |         |                |
 
-```mysql
-CREATE TABLE `order` (
-  `order_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `order_date` datetime NOT NULL, 
-  PRIMARY KEY (`order_id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`)  
-);
-```
+#### 购物车表（Shopping_Cart）
 
-order_item表
+|    Field    | Explain  |     Type      | Null | Key  | Default |     Extra      |
+| :---------: | :------: | :-----------: | :--: | :--: | :-----: | :------------: |
+|   cart_id   | 购物车ID |      INT      |  NO  | PRI  |  NULL   | AUTO_INCREMENT |
+|   user_id   |  用户ID  |      INT      |  NO  | MUL  |  NULL   |                |
+| FOREIGN KEY | 用户外键 | user(user_id) |      |      |         |                |
 
-```mysql
-CREATE TABLE `order_item` (
-  `order_item_id` int NOT NULL AUTO_INCREMENT,
-  `order_id` int NOT NULL,
-  `book_id` int NOT NULL,
-  `quantity` int ,
-  PRIMARY KEY (`order_item_id`),
-  FOREIGN KEY (`order_id`) REFERENCES `order`(`order_id`),
-  FOREIGN KEY (`book_id`) REFERENCES `book`(`book_id`)
-);
-```
+#### 购物车详情表（Shopping_Cart_Item）
 
-shopping_cart表
+|    Field    |   Explain    |          Type          | Null | Key  | Default |     Extra      |
+| :---------: | :----------: | :--------------------: | :--: | :--: | :-----: | :------------: |
+|   item_id   | 购物车详情ID |          INT           |  NO  | PRI  |  NULL   | AUTO_INCREMENT |
+|   cart_id   |   购物车ID   |          INT           |  NO  | MUL  |  NULL   |                |
+|   book_id   |    书籍ID    |          INT           |  NO  | MUL  |  NULL   |                |
+|  quantity   |     数量     |          INT           |  NO  |      |  NULL   |                |
+| FOREIGN KEY |  购物车外键  | shopping_cart(cart_id) |      |      |         |                |
+| FOREIGN KEY |   书籍外键   |     book(book_id)      |      |      |         |                |
 
-```mysql
-CREATE TABLE shopping_cart (
-  cart_id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
-```
+## 模块
 
-shopping_cart_item表
+1.
 
-```mysql
-CREATE TABLE shopping_cart_item (
-  item_id INT AUTO_INCREMENT PRIMARY KEY,
-  cart_id INT NOT NULL,
-  book_id INT NOT NULL,
-  quantity INT NOT NULL,
-  FOREIGN KEY (cart_id) REFERENCES shopping_cart(cart_id),
-  FOREIGN KEY (book_id) REFERENCES book(book_id)
-);
-```
+|     名称     |   描述    |
+| :----------: | :-------: |
+|   模块名称   |   登录    |
+|  模块负责人  |  钟俊博   |
+| 文档提交日期 | 2023/11/6 |
 
-### 数据库关系模式
+修改记录
 
-1. 用户（**用户ID**，姓名，密码，真实姓名，邮箱，地址，电话，钱包金额）
-2. 图书（ **图书ID**，书名，作者，出版商，ISBN，价格，库存，类型）
-3. 订单（ **订单ID**，*用户ID*，订单时间）
-4. 订单项（ **订单项ID**，*订单ID*，图书ID，图书数量）
-5. 购物车（**购物车ID**，*用户ID*）
-6. 购物车项（**购物车项ID**，*购物车ID*，*图书ID*，图书数量）
+|  No  | 版本号 | 修改内容意见 | 修改日期  | 修改人 |
+| :--: | :----: | :----------: | :-------: | :----: |
+|  1   | v1.0.0 |   初始版本   | 2023/11/6 | 钟俊博 |
 
-> 注：加粗为主键，斜体为外键
+## 接口说明
 
-1. 用户表（user）
+### 用户登录
 
-- 用户ID（user_id	Int	主键  ）
-- 姓名（user_name    String）
-- 密码（password    String）
-- 真实姓名（real_name    String）
-- 邮箱（email    String）
-- 地址（address    String）
-- 电话（phone_number    String）
-- 钱包金额（balance    DECIMAL）
+url: `http://localhost:3919/login`
 
-2. 图书表（book）
+method: `GET`
 
-- 图书ID（book_id    Int    主键）
-- 书名（title    String）
-- 作者（author    String）
-- 出版商（publisher    String）
-- ISBN（isbn    String）
-- 价格（price    DECIMAL）
-- 库存（stock    int）
-- 类型（type    String）
+type: `params`
 
-3. 订单（order）
+|  参数名  | 参数含义 | 类型/必须 |       备注       |
+| :------: | :------: | :-------: | :--------------: |
+| userName |  用户名  | String/Y  | 按用户名查询用户 |
 
-- 订单ID（order_id    Int    主键）
-- 用户ID（user_id    Int    外键关联user表（user_id））
-- 订单时间（order_date   datetime）
+接口流程：
 
-4. 订单项（order_item）
-
-- 订单项ID（order_item_id    Int    主键）
-- 订单ID（order_id    Int    外键关联order表（order_id））
-- 图书ID（book_id    Int    外键关联book表（book_id））
-- 图书数量（quantity    Int）
-
-5. 购物车（shopping_cart）
-
-- 购物车ID（cart_id    Int    主键）
-- 用户ID（user_id    Int   外键关联user表（user_id））
-
-6. 购物车项（shopping_cart_item）
-
-- 购物车项ID（item_id    Int    主键）
-- 购物车ID（cart_id    Int    外键关联shopping_cart（cart_id））
-- 图书ID（book_id    Int    外键关联book表（book_id））
-- 图书数量（quantity    Int）
-
-## 接口
-
-1. ...
+输出结果：

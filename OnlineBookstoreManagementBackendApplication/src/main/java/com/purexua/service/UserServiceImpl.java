@@ -12,11 +12,10 @@ public class UserServiceImpl implements UserService {
   private UserDao userDao;
 
   @Override
-  public User login(String username) {
+  public User isExistUserByUsername(String username) {
     System.out.println("用户 " + username + " login");
     return userDao.selectUserByUsername(username);
   }
-
   @Override
   public String updatePassword(Integer userId, String password) {
     userDao.updateUserPass(userId, password);
@@ -53,7 +52,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public String register(User user) {
     if(userDao.selectUserByUsername(user.getUserName()) != null) {
-      return "用户名已存在";
+      return "user already exist";
     }else {
       userDao.register(user);
       System.out.println("用户 " + user.getUserName() + " register");

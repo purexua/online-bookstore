@@ -13,8 +13,12 @@ public class UserController {
 
   @ResponseBody
   @GetMapping("/login")
-  public User login(@RequestParam("username") String username) {
-    return userService.login(username);
+  public User login(@RequestParam("userName") String username) {
+    if (userService.isExistUserByUsername(username) != null) {
+      return userService.isExistUserByUsername(username);
+    } else {
+      return null;
+    }
   }
 
 
@@ -49,8 +53,8 @@ public class UserController {
   }
 
   @ResponseBody
-  @PostMapping("/register")
-  public String register(User user) {
+  @PostMapping( "/register")
+  public String register(@RequestBody User user) {
     return userService.register(user);
   }
 }
