@@ -4,6 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
 <mapper namespace="com.purexua.mapper.ShoppingMapper">
+  
   <select id="getShoppingCartByUserId" resultType="shoppingCart">
     select * from shopping_cart where user_id = #{userId}
   </select>
@@ -20,6 +21,7 @@
     select * from shopping_cart_item
     where cart_id = #{cartId} and book_id = #{bookId}
   </select>
+  
   <update id="updateShoppingCartItem" parameterType="shoppingCartItem">
     update shopping_cart_item
     set quantity = #{quantity}

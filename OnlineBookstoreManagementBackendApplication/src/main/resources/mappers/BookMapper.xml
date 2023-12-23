@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
 <mapper namespace="com.purexua.mapper.BookMapper">
-  <select id="selectBooksByType" resultType="book">
-    select * from book
-    where type = #{type}
-  </select>
-  <select id="getAllBooks" resultType="book">
-    select * from book
-  </select>
-  
-  <insert id="addBook" parameterType="book">
-    insert into book(title,author,publisher,isbn,price,stock,type)
-    values(#{title},#{author},#{publisher},#{isbn},#{price},#{stock},#{type})
-  </insert>
-  
-  <select id="selectBookByTitle" resultType="book">
-    select * from book
-    where title = #{title}
-  </select>
-  
-  <select id="selectBookById" resultType="book">
-    select * from book
-    where book_id = #{bookId}
-  </select>
-  
-  <update id="updateBook" parameterType="book">
-    update book
-    set title = #{title},author = #{author},publisher = #{publisher},isbn = #{isbn},price = #{price},stock =
-    #{stock},type = #{type}
-    where book_id = #{bookId}
-  </update>
-  
-  <delete id="deleteBookById" parameterType="int">
-    delete from book
-    where book_id = #{bookId}
-  </delete>
-  
-  <select id="selectBooksByTitleAuthorIsbnType" resultType="book">
-    select * from book
-    <where>
-      <if test="title != null and title != ''">
-        title like concat('%',#{title},'%')
-      </if>
-      <if test="author != null and author != ''">
-        and author like concat('%',#{author},'%')
-      </if>
-      <if test="isbn != null and isbn != ''">
-        and isbn like concat('%',#{isbn},'%')
-      </if>
-      <if test="type != null and type != ''">
-        and type = #{type}
-      </if>
-    </where>
-  </select>
-  
-  <update id="updateBookAfterUserPay" >
-    update book
-    set stock = stock - #{quantity}
-    where book_id = #{bookId}
-  </update>
+    
+    <select id="selectBooksByType" resultType="book">
+        select * from book
+        where type = #{type}
+    </select>
+    
+    <select id="getAllBooks" resultType="book">
+        select * from book
+    </select>
+    
+    <select id="selectBookByTitle" resultType="book">
+        select * from book
+        where title = #{title}
+    </select>
+    
+    <select id="selectBookById" resultType="book">
+        select * from book
+        where book_id = #{bookId}
+    </select>
+    
+    <select id="selectBooksByTitleAuthorIsbnType" resultType="book">
+        select * from book
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%',#{title},'%')
+            </if>
+            <if test="author != null and author != ''">
+                and author like concat('%',#{author},'%')
+            </if>
+            <if test="isbn != null and isbn != ''">
+                and isbn like concat('%',#{isbn},'%')
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+    
+    <update id="updateBookAfterUserPay">
+        update book
+        set stock = stock - #{quantity}
+        where book_id = #{bookId}
+    </update>
+    
+    <insert id="addBook" parameterType="book">
+        insert into book(title,author,publisher,isbn,price,stock,type)
+        values(#{title},#{author},#{publisher},#{isbn},#{price},#{stock},#{type})
+    </insert>
+    
+    <delete id="deleteBookById" parameterType="int">
+        delete from book
+        where book_id = #{bookId}
+    </delete>
+    
+    <update id="updateBook" parameterType="book">
+        update book
+        set title = #{title},author = #{author},publisher = #{publisher},isbn = #{isbn},price = #{price},stock =
+        #{stock},type = #{type}
+        where book_id = #{bookId}
+    </update>
 </mapper>

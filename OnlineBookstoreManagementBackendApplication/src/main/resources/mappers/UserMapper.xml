@@ -8,6 +8,7 @@
     select * from user
     where user_name = #{username}
   </select>
+  
   <update id="updateUserPass">
     update user
     set password = #{password}
