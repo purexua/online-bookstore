@@ -69,7 +69,7 @@ function registerButton() {
             }, 1000)
         } else {
             ElMessage({
-                message: '注册失败',
+                message: res.data,
                 grouping: true,
                 type: 'error',
                 center: true,
@@ -125,9 +125,6 @@ function loginButton() {
         width: 10%;
     }
 
-    @media screen and (max-width: 768px) {
-        width: 90%;
-    }
 }
 </style>
   

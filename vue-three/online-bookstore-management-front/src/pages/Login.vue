@@ -5,7 +5,7 @@
                 <h1>Hello</h1>
                 <h2>网上书店管理系统</h2>
                 <el-form-item>
-                    <el-input size="large" :prefix-icon="User" v-model="loginForm.username"></el-input>
+                    <el-input size="large" :prefix-icon="User" v-model="loginForm.userName"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-input size="large" type="password" :prefix-icon="Lock" v-model="loginForm.password"
@@ -33,11 +33,13 @@ import { Lock, User } from '@element-plus/icons-vue'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 let loginForm = reactive({
-    username: 'purexua',
+    userName: 'purexua',
     password: '123456',
 });
 
@@ -48,37 +50,36 @@ let formLabelWidth = '120px';
 function loginButton() {
     axios({
         method: 'get',
-        url: `http://localhost:3919/serve8080/login?userName=${loginForm.username}`,
+        url: 'http://localhost:3919/serve8080/login',
+        params: {
+            userName: loginForm.userName,
+            password: loginForm.password,
+        }
     }).then(res => {
         loading.value = true
-        if (res.data === '') {
+        if (res.data === 'success') {
             ElMessage({
-                message: '用户名不存在-请先注册',
+                message: '登录成功',
+                grouping: true,
+                type: 'success',
+                center: true,
+            })
+
+            // Save the user info to the store
+            userStore.getUserInfo(loginForm.userName)
+
+            setTimeout(() => {
+                router.replace({
+                    name: 'index'
+                })
+            }, 1000)
+        } else {
+            ElMessage({
+                message: res.data,
                 grouping: true,
                 type: 'error',
                 center: true,
             })
-        } else {
-            if (res.data.password === loginForm.password) {
-                ElMessage({
-                    message: '登录成功',
-                    grouping: true,
-                    type: 'success',
-                    center: true,
-                })
-                setTimeout(() => {
-                    router.replace({
-                        name: 'index'
-                    })
-                }, 1000)
-            } else {
-                ElMessage({
-                    message: '密码错误',
-                    grouping: true,
-                    type: 'error',
-                    center: true,
-                })
-            }
         }
     }).catch(err => {
         console.log(err)
@@ -130,10 +131,6 @@ function registerButton() {
     .btn_space {
         display: inline-block;
         width: 10%;
-    }
-
-    @media screen and (max-width: 768px) {
-        width: 90%;
     }
 }
 </style>

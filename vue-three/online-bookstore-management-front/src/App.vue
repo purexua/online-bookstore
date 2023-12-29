@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup name="App">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 
 </script>
 

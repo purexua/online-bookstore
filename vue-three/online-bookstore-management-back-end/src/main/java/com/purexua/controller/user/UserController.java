@@ -12,14 +12,21 @@ public class UserController {
   private UserService userService;
 
   @GetMapping("/login")
-  public User login(@RequestParam String userName) {
+  public String login(@RequestParam String userName, @RequestParam String password) {
     //根据userName 查询单个用户
     LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
     wrapper.eq(User::getUserName, userName).last("limit 1");
-    System.out.println("### userName = " + userName + "login !");
-    return userService.getOne(wrapper);
+    User user = userService.getOne(wrapper);
+    if (user == null) {
+      return "fail - user not exists";
+    } else {
+      if (user.getPassword().equals(password)) {
+        return "success";
+      } else {
+        return "fail - password error";
+      }
+    }
   }
-
 
   @PostMapping("/register")
   public String register(@RequestBody User user) {
@@ -32,4 +39,9 @@ public class UserController {
     }
   }
 
+  @GetMapping("/user/{userName}")
+  public User getUser(@PathVariable String userName) {
+    System.out.printf("### 获取用户信息 - %s\n", userName);
+    return userService.getOne(new LambdaQueryWrapper<User>().eq(User::getUserName, userName));
+  }
 }
