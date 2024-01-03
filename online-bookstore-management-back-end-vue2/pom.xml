@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.purexua</groupId>
-    <artifactId>OnlineBookstoreManagementBackendApplication</artifactId>
+    <artifactId>online-bookstore-management-back-end-vue2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>OnlineBookstoreManagementBackendApplication</name>
-    <description>OnlineBookstoreManagementBackendApplication</description>
+    <name>online-bookstore-management-back-end-vue2</name>
+    <description>vue2</description>
     <properties>
         <java.version>17</java.version>
     </properties>

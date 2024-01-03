@@ -14,10 +14,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc  //json数据处理,必须使用此注解,因为他会加入json处理器
 @MapperScan("com.purexua.mapper")
 @SpringBootApplication
-public class OnlineBookstoreManagementBackEndApplication {
+public class Main {
 
   public static void main(String[] args) {
-    SpringApplication.run(OnlineBookstoreManagementBackEndApplication.class, args);
+    SpringApplication.run(Main.class, args);
   }
 
   @Bean

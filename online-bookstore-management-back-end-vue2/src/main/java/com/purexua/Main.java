@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan("com.purexua.mapper")
 @SpringBootApplication
-public class OnlineBookstoreManagementBackendApplication {
+public class Main {
 
   public static void main(String[] args) {
-    SpringApplication.run(OnlineBookstoreManagementBackendApplication.class, args);
+    SpringApplication.run(Main.class, args);
   }
 
 }
