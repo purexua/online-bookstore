@@ -14,16 +14,16 @@ public class UserController {
 
   // 登录 - 根据用户名和密码查询用户
   @GetMapping("/login")
-  public R<String> login(@RequestParam String userName, @RequestParam String password) {
+  public R<Object> login(@RequestParam String email, @RequestParam String password) {
     //根据userName 查询单个用户
     LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-    wrapper.eq(User::getUserName, userName).last("limit 1");
+    wrapper.eq(User::getEmail, email).last("limit 1");
     User user = userService.getOne(wrapper);
     if (user == null) {
       return R.fail("fail - user not exists");
     } else {
       if (user.getPassword().equals(password)) {
-        return R.ok("success");
+        return R.ok(user.getId());
       } else {
         return R.fail("fail - wrong password");
       }
@@ -33,7 +33,7 @@ public class UserController {
   // 注册 - 根据用户名和密码注册用户
   @PostMapping("/register")
   public R<String> register(@RequestBody User user) {
-    if (userService.getOne(new LambdaQueryWrapper<User>().eq(User::getUserName, user.getUserName())) != null) {
+    if (userService.getOne(new LambdaQueryWrapper<User>().eq(User::getEmail, user.getEmail())) != null) {
       return R.fail("fail - user already exists");
     } else {
       userService.save(user);
@@ -42,8 +42,8 @@ public class UserController {
   }
 
   // 获取用户信息 - 根据用户名获取用户信息
-  @GetMapping("/user/{userName}")
-  public R<User> getUser(@PathVariable String userName) {
-    return R.ok(userService.getOne(new LambdaQueryWrapper<User>().eq(User::getUserName, userName)));
+  @GetMapping("/user/{id}")
+  public R<User> getUser(@PathVariable String id) {
+    return R.ok(userService.getOne(new LambdaQueryWrapper<User>().eq(User::getId, id)));
   }
 }

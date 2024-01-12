@@ -3,15 +3,22 @@ package com.purexua.model.system;
 import com.baomidou.mybatisplus.annotation.*;
 import com.purexua.model.base.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
+
+@EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("sys_user")
 public class User extends BaseEntity {
 
+  @Serial
+  private static final long serialVersionUID = 1L;
+
   @TableField("avatar")
   private String avatar;
 
-  @TableField("user_name")
+  @TableField("username")
   private String userName;
 
   @TableField("password")
