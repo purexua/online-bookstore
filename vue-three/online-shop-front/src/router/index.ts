@@ -5,8 +5,8 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'Index',
-            component: () => import('../pages/Index.vue')
+            name: 'HomePage',
+            component: () => import('../pages/HomePage.vue')
         },
         {
             path: '/login',
@@ -17,6 +17,23 @@ const router = createRouter({
             path: '/register',
             name: 'Register',
             component: () => import('../pages/Register.vue')
+        },
+        {
+            path: '/error',
+            name: 'Error',
+            component: () => import('../pages/Error.vue')
+        },
+        {
+            path: '/index',
+            name: 'Index',
+            component: () => import('../pages/Index.vue'),
+            children: [
+                {
+                    path: 'home',
+                    name: 'Home',
+                    component: () => import('../pages/index/Home.vue')
+                },
+            ]
         }
     ]
 })
