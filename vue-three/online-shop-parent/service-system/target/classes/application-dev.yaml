@@ -38,7 +38,7 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #控制台显示sql
-  type-aliases-package: com.purexua.pojo
+  type-aliases-package: com.purexua.model.system
   global-config:
     db-config:
       logic-delete-field: deleted #逻辑删除字段
