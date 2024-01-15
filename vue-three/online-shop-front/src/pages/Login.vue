@@ -81,7 +81,7 @@ function login() {
                 center: true,
             })
 
-            userStore.user.id = res.data.data
+            userStore.state.user.id = res.data.data
 
             // Save the user info to the store
             userStore.getUserInfo(res.data.data)

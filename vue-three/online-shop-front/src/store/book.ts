@@ -7,7 +7,7 @@ export const useBookStore = defineStore('book', () => {
 
     const state = reactive({
         bookList: [] as Book[],
-        pageInfo: {} as PageInfo
+        pageInfo: {} as IPage
     });
 
 
@@ -29,7 +29,7 @@ export const useBookStore = defineStore('book', () => {
                 method: 'get',
                 url: `http://localhost:3919/serve8080/book/page/${category}/${pageNum}`,
             });
-            state.pageInfo = reactive<PageInfo>(res.data.data);
+            state.pageInfo = reactive<IPage>(res.data.data);
         } catch (err) {
             console.log(err);
         }
@@ -52,7 +52,7 @@ interface Book {
     status: string
 }
 
-interface PageInfo {
+interface IPage {
     total: number,
     current: number,
     size: number,

@@ -36,28 +36,34 @@
                             </DisclosurePanel>
                             </Disclosure>
                     </li>
+
                 </ul>
                 </li>
+
                 </ul>
             </nav>
 
-            <ul class="flex flex-col mt-auto">
-                <li class="-mx-6 mt-auto" v-if="userStore.user.id === -1">
+            <ul class="flex flex-row mt-auto">
+                <li class="-mx-6 mt-auto" v-show="userStore.state.user.id === -1">
                     <RouterLink :to="{ name: 'Login' }"
                         class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">
                         <img class="h-8 w-8 rounded-full bg-gray-50" src="../assets/unlogin.jpg" alt="" />
-                        <span class="sr-only">Your profile</span>
                         <span aria-hidden="true">log in</span>
                     </RouterLink>
                 </li>
-                <li v-else>
-                    <RouterLink :to="{ name: 'Login' }"
+                <li v-show="userStore.state.user.id !== -1">
+                    <p
                         class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">
                         <img class="h-8 w-8 rounded-full bg-gray-50" src="../assets/login.jpg" alt="" />
-                        <span class="sr-only">Your profile</span>
-                        <span aria-hidden="true">{{ userStore.user.userName }}</span>
-                    </RouterLink>
+                        <span aria-hidden="true">{{ userStore.state.user.userName }}</span>
+                        <a @click.stop="handleClick" class="cursor-pointer">
+                            <component :is="ArrowUpTrayIcon" class="h-4 w-4 shrink-0 text-gray-400 mt-1"
+                                aria-hidden="true" />
+                        </a>
+
+                    </p>
                 </li>
+
             </ul>
         </div>
 
@@ -69,25 +75,23 @@
   
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-
 import { ChevronRightIcon } from '@heroicons/vue/20/solid'
 import {
-    CalendarIcon,
-    ChartPieIcon,
-    DocumentDuplicateIcon,
-    FolderIcon,
+    ClipboardDocumentListIcon,
+    ShoppingBagIcon,
     HomeIcon,
     BookOpenIcon,
+    Cog6ToothIcon,
+    CreditCardIcon,
+    ArrowUpTrayIcon
 } from '@heroicons/vue/24/outline'
 
 import { useUserStore } from '../store/user'
 import { RouterLink, RouterView } from 'vue-router'
 
 const userStore = useUserStore()
-
-
 const navigation = [
-    { name: 'Home', to: { name: 'Login' }, icon: HomeIcon, current: false },
+    { name: 'Home', to: { name: 'Home' }, icon: HomeIcon, current: false },
     {
         name: 'Categories',
         icon: BookOpenIcon,
@@ -100,21 +104,23 @@ const navigation = [
             { name: 'Other', to: { name: 'OtherCategory' }, current: false },
         ],
     },
+    { name: 'My Order', to: { name: 'Login' }, icon: ClipboardDocumentListIcon, current: false },
+    { name: 'My Cart', to: { name: 'Login' }, icon: ShoppingBagIcon, current: false },
+    { name: 'Recharge', to: { name: 'Login' }, icon: CreditCardIcon, current: false },
     {
-        name: 'Projects',
-        icon: FolderIcon,
+        name: 'Account Setting',
+        icon: Cog6ToothIcon,
         current: false,
         children: [
-            { name: 'GraphQL API', to: { name: 'Login' }, current: false },
-            { name: 'iOS App', to: { name: 'Login' }, current: false },
-            { name: 'Android App', to: { name: 'Login' }, current: false },
-            { name: 'New Customer Portal', to: { name: 'Login' }, current: false },
+            { name: 'Change Password', to: { name: 'Login' }, current: false },
+            { name: 'Edit Profile', to: { name: 'Login' }, current: false },
         ],
     },
-    { name: 'Calendar', to: { name: 'Login' }, icon: CalendarIcon, current: false },
-    { name: 'Documents', to: { name: 'Login' }, icon: DocumentDuplicateIcon, current: false },
-    { name: 'Reports', to: { name: 'Login' }, icon: ChartPieIcon, current: false },
 ]
+
+const handleClick = () => {
+    userStore.logOut()
+}
 </script>
 
 <style scoped></style>

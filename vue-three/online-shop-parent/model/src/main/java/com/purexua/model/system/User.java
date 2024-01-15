@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -44,4 +45,9 @@ public class User extends BaseEntity {
 
   @TableField("wallet")
   private Double wallet;
+
+  @TableField(exist = false)
+  List<Order> orders;
+  @TableField(exist = false)
+  Cart cart;
 }

@@ -111,34 +111,32 @@
   
 <script setup lang="ts">
 import { useBookStore } from '../../store/book'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { watch } from 'vue'
 
 const bookStore = useBookStore()
 const route = useRoute()
 
+async function fetchBooks(pageNum: number) {
+    await bookStore.getBookByType(route.meta.category as string, pageNum)
+    await bookStore.getPageInfo(route.meta.category as string, pageNum)
+}
+
 function previous() {
     if (bookStore.state.pageInfo.current > 1) {
         bookStore.state.pageInfo.current--
-        bookStore.getBookByType(route.meta.category as string, bookStore.state.pageInfo.current)
+        fetchBooks(bookStore.state.pageInfo.current)
     }
 }
 
 function next() {
     if (bookStore.state.pageInfo.current < Math.ceil(bookStore.state.pageInfo.total / bookStore.state.pageInfo.size)) {
         bookStore.state.pageInfo.current++
-        bookStore.getBookByType(route.meta.category as string, bookStore.state.pageInfo.current)
+        fetchBooks(bookStore.state.pageInfo.current)
     }
 }
 
-onMounted(async () => {
-    await bookStore.getBookByType(route.meta.category as string, 1)
-    await bookStore.getPageInfo(route.meta.category as string, 1)
-})
+onMounted(() => fetchBooks(1))
 
-watch(() => route.meta.category, async () => {
-    await bookStore.getBookByType(route.meta.category as string, 1)
-    await bookStore.getPageInfo(route.meta.category as string, 1)
-})
+watch(() => route.meta.category, () => fetchBooks(1))
 </script>
